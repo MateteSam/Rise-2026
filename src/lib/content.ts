@@ -87,6 +87,7 @@ export const SPEAKERS: Speaker[] = [
     bio: "Rev. Dr. Sam Oye will deliver the event's keynote address on personal renewal, resilience, faith, purpose and intentional living. The keynote will encourage participants to recognise that transformation requires more than aspiration — it requires the courage to renew one's thinking, reconnect with purpose and move forward with clarity and conviction.",
     themes: ["Personal renewal", "Resilience", "Purpose and calling", "Faith and intentional living", "Courage through change", "Stepping into one's potential"],
     accent: "violet",
+    image: "spk-samoye",
   },
   {
     name: "Yolanda Cuba",
@@ -96,6 +97,7 @@ export const SPEAKERS: Speaker[] = [
     bio: "Yolanda Cuba will lead an intimate and thought-provoking fireside conversation exploring courage, reinvention, wellbeing, career, family, purpose and legacy — offering rare, honest reflections on navigating responsibility, change and leadership while remaining anchored in personal values.",
     themes: ["Courage and reinvention", "Leadership through change", "Emotional intelligence", "Wellbeing", "Career and family", "Purpose and legacy"],
     accent: "orange",
+    image: "spk-yolanda",
   },
   {
     name: "Veronica Motloutsi",
@@ -104,6 +106,7 @@ export const SPEAKERS: Speaker[] = [
     bio: "Veronica Motloutsi will lead a practical masterclass focused on the competencies women need to remain visible, relevant and ready in a changing economy — moving beyond inspiration to help participants think intentionally about upskilling, adaptability, digital transformation and leadership readiness.",
     themes: ["Future-fit capability", "Upskilling and lifelong learning", "Digital transformation", "Adaptability", "Professional visibility", "Leadership readiness"],
     accent: "violet",
+    image: "spk-veronica",
   },
   {
     name: "Joy Ogeh-Hutfield",
@@ -112,6 +115,7 @@ export const SPEAKERS: Speaker[] = [
     bio: "Joy Ogeh-Hutfield will deliver a keynote on self-mastery, authentic confidence, personal presence and intentional growth, and guide participants through an interactive Confidence Workout featuring affirmations, grounding practices and practical coaching moments designed to translate insight into embodied confidence.",
     themes: ["Authentic confidence", "Self-mastery", "Personal presence", "High-performance thinking", "Intentional growth", "Grounding and embodied confidence"],
     accent: "orange",
+    image: "spk-joy",
   },
   {
     name: "Bess Rhirando",
@@ -120,6 +124,7 @@ export const SPEAKERS: Speaker[] = [
     bio: "Bess Rhirando will host Rise, South African Woman 2026 and guide participants through the conference journey of legacy, confidence, transformation and future readiness — establishing the atmosphere, connecting programme segments and leading moments of reflection, celebration and the closing charge.",
     themes: ["Welcoming participants", "Framing the theme", "Introducing speakers", "Facilitating transitions", "Engaging hybrid audiences", "Leading the closing charge"],
     accent: "violet",
+    image: "spk-bess",
   },
   {
     name: "Dr. Ntombi Mhangwani",
@@ -128,6 +133,7 @@ export const SPEAKERS: Speaker[] = [
     bio: "Dr. Ntombi Mhangwani will contribute to an intergenerational discussion examining how African women can honour their legacy while confidently responding to present and future leadership demands.",
     themes: ["Women's leadership", "Career transitions", "Emotional intelligence", "Confidence and resilience", "Financial agency", "Mentorship", "Authenticity"],
     accent: "orange",
+    image: "spk-ntombi",
   },
   {
     name: "Kagiso Malepe",
