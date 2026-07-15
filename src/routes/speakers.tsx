@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SPEAKERS } from "../lib/content";
+import { SpeakerFlipCard } from "../components/speaker-flip-card";
 
 export const Route = createFileRoute("/speakers")({
   component: SpeakersPage,
@@ -26,33 +27,11 @@ function SpeakersPage() {
         </p>
       </header>
 
-      <div className="space-y-6">
-        {SPEAKERS.map((s) => {
-          const initials = s.name.split(" ").filter(Boolean).map((n) => n[0]).slice(0, 2).join("");
-          const isViolet = s.accent === "violet";
-          return (
-            <article key={s.name} className="grid gap-6 rounded-3xl border border-border bg-card p-6 md:grid-cols-[220px_1fr] md:p-8">
-              <div className={`relative flex aspect-square items-center justify-center rounded-2xl ${isViolet ? "bg-violet/10" : "bg-orange/10"}`}>
-                <div className={`absolute right-5 top-5 h-5 w-5 rounded-full ${isViolet ? "bg-orange" : "bg-violet"}`} />
-                <div className={`absolute bottom-6 left-6 h-20 w-5 rounded-full ${isViolet ? "bg-violet" : "bg-orange"}`} />
-                <span className="font-serif text-7xl text-ink">{initials}</span>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-violet">{s.role}{s.affiliation ? ` · ${s.affiliation}` : ""}</p>
-                <h2 className="mt-2 font-serif text-3xl text-ink">{s.name}</h2>
-                <p className="mt-1 font-serif text-lg italic text-orange">{s.session}</p>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{s.bio}</p>
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {s.themes.map((t) => (
-                    <li key={t} className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs text-ink">
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          );
-        })}
+      <p className="mb-8 text-xs uppercase tracking-widest text-muted-foreground">Hover or tap each tile to flip</p>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {SPEAKERS.map((s) => (
+          <SpeakerFlipCard key={s.name} speaker={s} />
+        ))}
       </div>
     </div>
   );
