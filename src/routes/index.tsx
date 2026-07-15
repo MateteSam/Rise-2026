@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import heroImg from "../assets/hero.jpg";
+import venueAsset from "../assets/venue-hero.jpg.asset.json";
 import { EVENT, HIGHLIGHTS, PROGRAMME, SPEAKERS } from "../lib/content";
+import { SpeakerFlipCard } from "../components/speaker-flip-card";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -24,49 +25,54 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div>
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 md:grid-cols-2 md:py-24">
-          <div>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet/30 bg-violet/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-violet">
-              <span className="h-1.5 w-1.5 rounded-full bg-orange" />
-              GWFSN Women's Day Conference
-            </p>
-            <h1 className="font-serif text-5xl leading-[0.95] text-ink md:text-7xl">
-              Rise,<br />
-              <span className="italic text-violet">South African</span><br />
-              Woman <span className="text-orange">2026</span>
-            </h1>
-            <p className="mt-6 max-w-lg text-lg text-muted-foreground">
-              {EVENT.tagline}. An extraordinary afternoon of confidence, leadership and future-fit skills — with respected voices from South Africa, Nigeria and the United Kingdom.
-            </p>
-            <p className="mt-4 text-sm font-semibold uppercase tracking-widest text-ink">
-              {EVENT.motto}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/register" className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-cream transition-transform hover:scale-[1.02]">
-                Reserve your seat — {EVENT.price}
-              </Link>
-              <Link to="/programme" className="rounded-full border border-ink/20 px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-cream">
-                View programme
-              </Link>
-            </div>
-            <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-border pt-6 text-sm">
-              <div><dt className="text-xs uppercase tracking-widest text-muted-foreground">Date</dt><dd className="mt-1 font-semibold text-ink">8 Aug 2026</dd></div>
-              <div><dt className="text-xs uppercase tracking-widest text-muted-foreground">Time</dt><dd className="mt-1 font-semibold text-ink">2 – 7 PM</dd></div>
-              <div><dt className="text-xs uppercase tracking-widest text-muted-foreground">Where</dt><dd className="mt-1 font-semibold text-ink">Rosebank + Online</dd></div>
-            </dl>
+      {/* HERO — full-bleed venue with overlay text */}
+      <section className="relative isolate overflow-hidden">
+        <img
+          src={venueAsset.url}
+          alt="The Royal Majestic Hotel ballroom, Rosebank"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/60 to-ink/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-violet/30 via-transparent to-ink/70 mix-blend-multiply" />
+        <div className="relative mx-auto max-w-7xl px-5 py-28 md:py-40">
+          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-cream/30 bg-cream/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-cream backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-orange" />
+            GWFSN · Women's Day 2026
+          </p>
+          <h1 className="font-serif text-5xl leading-[0.95] text-cream md:text-7xl lg:text-[5.5rem]">
+            RISE,<br />
+            SOUTH AFRICAN<br />
+            WOMAN <span className="text-orange">2026</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-base uppercase tracking-[0.2em] text-cream/90 md:text-lg">
+            A premium Women's Day experience at the five-star<br />
+            Royal Majestic Hotel, Rosebank
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link to="/register" className="rounded-full bg-violet px-7 py-3.5 text-sm font-semibold text-cream shadow-lg shadow-violet/40 transition-transform hover:scale-[1.03]">
+              Register Now
+            </Link>
+            <Link to="/programme" className="rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-cream ring-1 ring-cream/30 transition-colors hover:bg-cream hover:text-ink">
+              Learn More
+            </Link>
           </div>
-          <div className="relative">
-            <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-violet/20 via-orange/10 to-transparent blur-2xl" />
-            <img
-              src={heroImg}
-              alt="Editorial artwork of women rising toward a golden sun"
-              width={1600}
-              height={1200}
-              className="rounded-[1.5rem] shadow-2xl shadow-violet/20"
-            />
-          </div>
+          <dl className="mt-14 grid max-w-2xl grid-cols-3 gap-6 border-t border-cream/20 pt-6 text-sm text-cream">
+            <div><dt className="text-[10px] uppercase tracking-widest text-cream/60">Date</dt><dd className="mt-1 font-semibold">8 Aug 2026</dd></div>
+            <div><dt className="text-[10px] uppercase tracking-widest text-cream/60">Time</dt><dd className="mt-1 font-semibold">2 – 7 PM</dd></div>
+            <div><dt className="text-[10px] uppercase tracking-widest text-cream/60">Where</dt><dd className="mt-1 font-semibold">Rosebank + Online</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      {/* Distinguished symposium band */}
+      <section className="bg-violet/5 border-y border-violet/15">
+        <div className="mx-auto max-w-5xl px-5 py-8 text-center">
+          <p className="font-serif text-lg leading-relaxed text-violet md:text-xl">
+            A distinguished Women's Day symposium bringing together powerful voices in leadership, confidence, personal transformation and future-fit skills.
+          </p>
+          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-ink/70">
+            {EVENT.date} · {EVENT.motto}
+          </p>
         </div>
       </section>
 
@@ -89,14 +95,11 @@ function Index() {
         <div className="mb-14 max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-violet">An afternoon designed to move you forward</p>
           <h2 className="mt-3 font-serif text-4xl text-ink md:text-5xl">Event highlights</h2>
+          <p className="mt-3 text-sm text-muted-foreground">Hover each tile to reveal what awaits.</p>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {HIGHLIGHTS.map((h, i) => (
-            <article key={h.title} className="group rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-violet/40 hover:shadow-lg">
-              <div className="mb-4 font-serif text-3xl text-orange">0{i + 1}</div>
-              <h3 className="font-serif text-xl text-ink">{h.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{h.body}</p>
-            </article>
+            <HighlightFlip key={h.title} index={i} title={h.title} body={h.body} />
           ))}
         </div>
       </section>
@@ -140,7 +143,7 @@ function Index() {
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {SPEAKERS.slice(0, 4).map((s) => (
-            <SpeakerCard key={s.name} name={s.name} role={s.role} accent={s.accent} />
+            <SpeakerFlipCard key={s.name} speaker={s} />
           ))}
         </div>
       </section>
@@ -172,19 +175,24 @@ function Index() {
   );
 }
 
-function SpeakerCard({ name, role, accent }: { name: string; role: string; accent: "violet" | "orange" }) {
-  const initials = name.split(" ").filter(Boolean).map((n) => n[0]).slice(0, 2).join("");
+function HighlightFlip({ index, title, body }: { index: number; title: string; body: string }) {
+  const accent = index % 2 === 0 ? "violet" : "orange";
   return (
-    <article className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg">
-      <div className={`relative flex aspect-square items-center justify-center ${accent === "violet" ? "bg-violet/10" : "bg-orange/10"}`}>
-        <div className={`absolute right-4 top-4 h-4 w-4 rounded-full ${accent === "violet" ? "bg-orange" : "bg-violet"}`} />
-        <div className={`absolute bottom-6 left-6 h-16 w-4 rounded-full ${accent === "violet" ? "bg-violet" : "bg-orange"}`} />
-        <span className="font-serif text-6xl text-ink">{initials}</span>
+    <div className="group perspective-1000 h-56 w-full [&:hover_.flip-inner]:rotate-y-180 [&:focus-within_.flip-inner]:rotate-y-180">
+      <div tabIndex={0} className="flip-inner relative h-full w-full preserve-3d transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] outline-none">
+        <article className="absolute inset-0 backface-hidden rounded-2xl border border-border bg-card p-7 shadow-sm">
+          <div className={`mb-4 font-serif text-4xl ${accent === "violet" ? "text-violet" : "text-orange"}`}>
+            {String(index + 1).padStart(2, "0")}
+          </div>
+          <h3 className="font-serif text-xl leading-tight text-ink">{title}</h3>
+          <p className="mt-6 text-[10px] uppercase tracking-widest text-muted-foreground">Hover to explore →</p>
+        </article>
+        <article className={`absolute inset-0 rotate-y-180 backface-hidden rounded-2xl p-7 text-cream shadow-lg ${accent === "violet" ? "bg-violet" : "bg-orange"}`}>
+          <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-cream/80">Highlight {String(index + 1).padStart(2, "0")}</div>
+          <h3 className="font-serif text-lg leading-tight">{title}</h3>
+          <p className="mt-3 text-sm leading-relaxed text-cream/95">{body}</p>
+        </article>
       </div>
-      <div className="p-5">
-        <h3 className="font-serif text-lg text-ink">{name}</h3>
-        <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">{role}</p>
-      </div>
-    </article>
+    </div>
   );
 }
