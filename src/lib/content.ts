@@ -75,6 +75,7 @@ export type Speaker = {
   bio: string;
   themes: string[];
   accent: "violet" | "orange";
+  image?: string;
 };
 
 export const SPEAKERS: Speaker[] = [
