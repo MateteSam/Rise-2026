@@ -15,11 +15,11 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logoAsset.url} alt="Global Women's Future Skills Network" className="h-10 w-10 rounded-full object-cover" />
-          <span className="hidden text-sm font-semibold tracking-tight text-ink sm:block">
-            GWFSN
-            <span className="ml-2 font-normal text-muted-foreground">Rise 2026</span>
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="Global Women's Future Skills Network"
+            className="h-16 w-auto md:h-20 object-contain"
+          />
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
           {nav.map((n) => (
