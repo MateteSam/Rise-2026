@@ -159,3 +159,26 @@
     letter-spacing: -0.02em;
   }
 }
+
+/* --- 3D flip card utilities --- */
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+@utility backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+@utility rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@keyframes rise-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@utility animate-rise-float {
+  animation: rise-float 6s ease-in-out infinite;
+}
