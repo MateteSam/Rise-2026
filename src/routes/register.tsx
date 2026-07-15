@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { EVENT } from "../lib/content";
+import { EVENT, BANKING } from "../lib/content";
 
 export const Route = createFileRoute("/register")({
   component: RegisterPage,
@@ -51,6 +51,11 @@ function RegisterPage() {
             </div>
           ))}
         </dl>
+        {submitted.format === "in-person" && (
+          <div className="mt-10">
+            <BankingPanel firstName={submitted.firstName} />
+          </div>
+        )}
         <p className="mt-10 font-serif text-xl italic text-violet">
           Come ready to honour the past, own the present and shape the future.
         </p>
@@ -112,7 +117,73 @@ function RegisterPage() {
           Photography and video recording may take place during the event.
         </p>
       </form>
+
+      <div className="lg:col-span-2">
+        <BankingPanel />
+      </div>
     </div>
+  );
+}
+
+function BankingPanel({ firstName }: { firstName?: string } = {}) {
+  const reference = firstName ? `RISE2026-${firstName.replace(/\s+/g, "")}` : BANKING.reference;
+  const rows: [string, string][] = [
+    ["Bank", BANKING.bankName],
+    ["Account name", BANKING.accountName],
+    ["Account type", BANKING.accountType],
+    ["Account number", BANKING.accountNumber],
+    ["Branch code", BANKING.branchCode],
+    ["SWIFT / BIC", BANKING.swift],
+    ["Reference", reference],
+    ["Amount", `${EVENT.price} (in-person)`],
+  ];
+  return (
+    <section className="overflow-hidden rounded-3xl border border-violet/20 bg-gradient-to-br from-violet/95 via-violet to-ink text-cream shadow-xl">
+      <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-cream/15 px-7 py-5">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-orange">Payment · EFT / Bank Transfer</p>
+          <h2 className="mt-1 font-serif text-2xl">Banking details</h2>
+        </div>
+        <span className="rounded-full bg-cream/10 px-3 py-1 text-[10px] uppercase tracking-widest text-cream/85">
+          MoMo coming soon
+        </span>
+      </div>
+      <dl className="grid grid-cols-1 divide-y divide-cream/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0">
+        <div className="divide-y divide-cream/10">
+          {rows.slice(0, 4).map(([k, v]) => (
+            <BankRow key={k} k={k} v={v} />
+          ))}
+        </div>
+        <div className="divide-y divide-cream/10">
+          {rows.slice(4).map(([k, v]) => (
+            <BankRow key={k} k={k} v={v} highlight={k === "Reference" || k === "Amount"} />
+          ))}
+        </div>
+      </dl>
+      <p className="border-t border-cream/15 px-7 py-4 text-xs leading-relaxed text-cream/80">
+        Please use the reference above so we can match your payment to your seat. Email proof of payment to{" "}
+        <a href={`mailto:${BANKING.email}`} className="font-semibold text-orange underline-offset-2 hover:underline">
+          {BANKING.email}
+        </a>{" "}
+        and your confirmation will follow within 24 hours.
+      </p>
+    </section>
+  );
+}
+
+function BankRow({ k, v, highlight }: { k: string; v: string; highlight?: boolean }) {
+  return (
+    <button
+      type="button"
+      onClick={() => navigator.clipboard?.writeText(v)}
+      title="Click to copy"
+      className="group flex w-full items-baseline justify-between gap-4 px-7 py-3 text-left transition-colors hover:bg-cream/5"
+    >
+      <span className="text-[10px] uppercase tracking-[0.2em] text-cream/60">{k}</span>
+      <span className={`font-mono text-sm ${highlight ? "text-orange" : "text-cream"} group-hover:underline`}>
+        {v}
+      </span>
+    </button>
   );
 }
 
