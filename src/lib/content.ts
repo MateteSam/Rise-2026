@@ -8,6 +8,8 @@ export const EVENT = {
   price: "R499",
 };
 
+export const REGISTRATION_EMAIL = "registrations@gwfsn.org";
+
 export const BANKING = {
   bankName: "First National Bank (FNB)",
   accountName: "Global Women's Future Skills Network",
@@ -16,7 +18,7 @@ export const BANKING = {
   branchCode: "250655",
   swift: "FIRNZAJJ",
   reference: "RISE2026-YourFullName",
-  email: "registrations@gwfsn.co.za",
+  email: REGISTRATION_EMAIL,
 };
 
 export const PROGRAMME = [

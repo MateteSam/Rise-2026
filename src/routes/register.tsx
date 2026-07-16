@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { EVENT, BANKING } from "../lib/content";
+import { EVENT, BANKING, REGISTRATION_EMAIL } from "../lib/content";
 
 export const Route = createFileRoute("/register")({
   component: RegisterPage,
@@ -24,28 +24,52 @@ export const Route = createFileRoute("/register")({
 });
 
 type Format = "in-person" | "online";
+type SubmittedRegistration = {
+  firstName: string;
+  format: Format;
+  mailto: string;
+};
 
 function RegisterPage() {
   const [format, setFormat] = useState<Format>("in-person");
-  const [submitted, setSubmitted] = useState<null | { firstName: string; format: Format }>(null);
+  const [submitted, setSubmitted] = useState<SubmittedRegistration | null>(null);
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const firstName = String(data.get("firstName") || "Friend");
-    setSubmitted({ firstName, format });
+    const firstName = String(data.get("firstName") || "Friend").trim();
+    const lastName = String(data.get("lastName") || "").trim();
+    const fullName = [firstName, lastName].filter(Boolean).join(" ") || "Website visitor";
+    const attendance = format === "in-person" ? "In Person" : "Online";
+    const mailto = `mailto:${REGISTRATION_EMAIL}?subject=${encodeURIComponent(
+      `Rise 2026 registration — ${fullName}`,
+    )}&body=${encodeURIComponent(
+      [
+        "New Rise, South African Woman 2026 registration",
+        "",
+        `Name: ${fullName}`,
+        `Email: ${String(data.get("email") || "Not provided")}`,
+        `Phone / WhatsApp: ${String(data.get("phone") || "Not provided")}`,
+        `Organisation: ${String(data.get("organisation") || "Not provided")}`,
+        `Attendance: ${attendance}`,
+        `Notes: ${String(data.get("notes") || "None")}`,
+      ].join("\n"),
+    )}`;
+
+    setSubmitted({ firstName, format, mailto });
+    window.location.href = mailto;
   }
 
   if (submitted) {
     return (
       <div className="mx-auto max-w-2xl px-5 py-24 text-center">
         <p className="text-xs font-semibold uppercase tracking-widest text-orange">
-          Registration confirmed
+          Registration email prepared
         </p>
         <h1 className="mt-4 font-serif text-5xl text-ink">Thank you, {submitted.firstName}.</h1>
         <p className="mt-6 text-lg text-muted-foreground">
-          We look forward to welcoming you to an elegant afternoon of inspiration, reflection,
-          connection and practical growth.
+          Your registration email is addressed to {REGISTRATION_EMAIL}. If your email app did not
+          open automatically, use the button below to open it.
         </p>
         <dl className="mx-auto mt-10 grid max-w-md gap-4 text-left">
           {[
@@ -63,6 +87,12 @@ function RegisterPage() {
             </div>
           ))}
         </dl>
+        <a
+          href={submitted.mailto}
+          className="mt-8 inline-flex rounded-full bg-violet px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-ink"
+        >
+          Open registration email
+        </a>
         {submitted.format === "in-person" && (
           <div className="mt-10">
             <BankingPanel firstName={submitted.firstName} />
