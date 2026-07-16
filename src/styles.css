@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
@@ -154,7 +154,11 @@
     font-family: var(--font-sans);
   }
 
-  h1, h2, h3, h4, .font-serif {
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-serif {
     font-family: var(--font-serif);
     letter-spacing: -0.02em;
   }
@@ -176,9 +180,28 @@
 }
 
 @keyframes rise-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 @utility animate-rise-float {
   animation: rise-float 6s ease-in-out infinite;
+}
+
+.rise-home h1,
+.rise-home h2,
+.rise-home h3 {
+  font-family: var(--font-sans);
+  letter-spacing: -0.04em;
+}
+
+.rise-support h1,
+.rise-support h2,
+.rise-support h3 {
+  font-family: var(--font-sans);
+  letter-spacing: -0.04em;
 }
