@@ -1,196 +1,347 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
-import venueAsset from "../assets/venue-hero.jpg.asset.json";
-import { EVENT, HIGHLIGHTS, PROGRAMME, SPEAKERS } from "../lib/content";
-import { SpeakerFlipCard } from "../components/speaker-flip-card";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import heroVenue from "../assets/hero-venue.png";
+import speakerBess from "../assets/speaker-bess.png";
+import speakerNtombi from "../assets/speaker-ntombi.png";
+import speakerSam from "../assets/speaker-sam-oye.jpg";
+import speakerVeronica from "../assets/speaker-veronica.png";
+import speakerYolanda from "../assets/speaker-yolanda.png";
+import speakerJoy from "../assets/speaker-joy.png";
+import { EVENT, HIGHLIGHTS, PROGRAMME } from "../lib/content";
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Rise, South African Woman 2026 — GWFSN Women's Day Conference" },
+      { title: "Rise, South African Woman 2026 - GWFSN Women's Day Conference" },
       {
         name: "description",
         content:
-          "An elegant Women's Day conference on 8 August 2026 in Rosebank, celebrating confidence, leadership and future-fit skills. In-person R499 or hybrid online.",
+          "A premium Women's Day experience at The Royal Majestic Hotel, Rosebank on 8 August 2026.",
       },
       { property: "og:title", content: "Rise, South African Woman 2026" },
-      { property: "og:description", content: "Honour the Past · Own the Present · Shape the Future — 8 August 2026, Rosebank." },
-      { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
 });
 
+const FEATURED = [
+  {
+    name: "Yolanda Cuba (CA)",
+    role: "Deputy CEO MTN SA",
+    image: speakerYolanda,
+    accent: "#293dff",
+    panelLabel: "SPEAKER",
+    labelColor: "#293dff",
+    bio: "Courage, calling and the confidence to move forward.",
+  },
+  {
+    name: "Veronica Motloutsi",
+    role: "Group Executive for Digital Transformation and Innovation (SEDFA)",
+    image: speakerVeronica,
+    accent: "#d9aeb0",
+    panelLabel: "SPEAKER",
+    labelColor: "#d9aeb0",
+    bio: "Future-fit capability, adaptability and professional visibility.",
+  },
+  {
+    name: "Joy Ogeh-Hutfield",
+    role: "Keynote Speaker & Confidence Coach",
+    image: speakerJoy,
+    accent: "#ff7836",
+    panelLabel: "SPEAKER",
+    labelColor: "#ff7836",
+    bio: "Self-mastery, authentic confidence and intentional growth.",
+  },
+  {
+    name: "Dr. Ntombi Mnisi M.",
+    role: "Founder / CEO",
+    image: speakerNtombi,
+    accent: "#c6c8d4",
+    panelLabel: "SPEAKER",
+    labelColor: "#c6c8d4",
+    bio: "Honouring legacy, leading now and shaping the future.",
+  },
+  {
+    name: "Rev. Dr. Sam Oye",
+    role: "Founder / Lead Pastor, The Transforming Church",
+    image: speakerSam,
+    accent: "#7d5a4a",
+    panelLabel: "SPEAKER",
+    labelColor: "#49a8ff",
+    bio: "The power of renewal, resilience, faith and purpose.",
+  },
+  {
+    name: "Prophetess Bess Rhiranda",
+    role: "General Manager and Regional Talent Leader, MTN Group",
+    image: speakerBess,
+    accent: "#4b211f",
+    panelLabel: "HOST",
+    labelColor: "#8a6856",
+    bio: "Our host, guiding the Rise experience from welcome to closing charge.",
+  },
+] as const;
+
 function Index() {
   return (
-    <div>
-      {/* HERO — full-bleed venue with overlay text */}
-      <section className="relative isolate overflow-hidden">
+    <div className="rise-home bg-[#f8f8f8] text-ink">
+      <section className="relative isolate min-h-[620px] overflow-hidden bg-ink text-cream md:min-h-[680px]">
         <img
-          src={venueAsset.url}
-          alt="The Royal Majestic Hotel ballroom, Rosebank"
-          className="absolute inset-0 h-full w-full object-cover"
+          src={heroVenue}
+          alt="Royal Majestic Hotel ballroom"
+          className="absolute inset-0 h-full w-full object-cover object-[58%_center] md:object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/60 to-ink/20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-violet/30 via-transparent to-ink/70 mix-blend-multiply" />
-        <div className="relative mx-auto max-w-7xl px-5 py-28 md:py-40">
-          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-cream/30 bg-cream/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-cream backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-orange" />
-            GWFSN · Women's Day 2026
-          </p>
-          <h1 className="font-serif text-5xl leading-[0.95] text-cream md:text-7xl lg:text-[5.5rem]">
-            RISE,<br />
-            SOUTH AFRICAN<br />
-            WOMAN <span className="text-orange">2026</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-base uppercase tracking-[0.2em] text-cream/90 md:text-lg">
-            A premium Women's Day experience at the five-star<br />
-            Royal Majestic Hotel, Rosebank
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/register" className="rounded-full bg-violet px-7 py-3.5 text-sm font-semibold text-cream shadow-lg shadow-violet/40 transition-transform hover:scale-[1.03]">
-              Register Now
-            </Link>
-            <Link to="/programme" className="rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-cream ring-1 ring-cream/30 transition-colors hover:bg-cream hover:text-ink">
-              Learn More
-            </Link>
+        <div className="absolute inset-0 bg-[#211864]/75 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#171044]/70 via-transparent to-[#171044]/15" />
+        <div className="relative mx-auto flex min-h-[620px] max-w-7xl items-end px-5 pb-16 pt-24 md:min-h-[680px] md:py-28">
+          <div className="max-w-4xl">
+            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.32em] text-white/80">
+              GWFSN presents - Women's Day 2026
+            </p>
+            <h1 className="max-w-4xl text-[2.8rem] font-semibold uppercase leading-[0.9] tracking-[-0.045em] text-white min-[375px]:text-5xl sm:text-6xl md:text-8xl">
+              Rise,
+              <br />
+              South African Woman <span className="text-[#d9ddff]">2026</span>
+            </h1>
+            <p className="mt-7 max-w-2xl text-sm font-medium uppercase leading-relaxed tracking-[0.17em] text-white/90 md:text-lg">
+              A premium Women's Day experience at the five-star
+              <br className="hidden md:block" /> The Royal Majestic Hotel, Rosebank
+            </p>
+            <div className="mt-9 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+              <Link
+                to="/register"
+                className="flex items-center justify-center bg-[#293dff] px-4 py-3 text-center text-[10px] font-bold uppercase tracking-wide text-white transition-transform hover:-translate-y-1 sm:px-7 sm:text-xs"
+              >
+                Register Now
+              </Link>
+              <Link
+                to="/programme"
+                className="flex items-center justify-center bg-black px-4 py-3 text-center text-[10px] font-bold uppercase tracking-wide text-white transition-transform hover:-translate-y-1 sm:px-7 sm:text-xs"
+              >
+                Learn More
+              </Link>
+            </div>
           </div>
-          <dl className="mt-14 grid max-w-2xl grid-cols-3 gap-6 border-t border-cream/20 pt-6 text-sm text-cream">
-            <div><dt className="text-[10px] uppercase tracking-widest text-cream/60">Date</dt><dd className="mt-1 font-semibold">8 Aug 2026</dd></div>
-            <div><dt className="text-[10px] uppercase tracking-widest text-cream/60">Time</dt><dd className="mt-1 font-semibold">2 – 7 PM</dd></div>
-            <div><dt className="text-[10px] uppercase tracking-widest text-cream/60">Where</dt><dd className="mt-1 font-semibold">Rosebank + Online</dd></div>
-          </dl>
         </div>
       </section>
 
-      {/* Distinguished symposium band */}
-      <section className="bg-violet/5 border-y border-violet/15">
-        <div className="mx-auto max-w-5xl px-5 py-8 text-center">
-          <p className="font-serif text-lg leading-relaxed text-violet md:text-xl">
-            A distinguished Women's Day symposium bringing together powerful voices in leadership, confidence, personal transformation and future-fit skills.
+      <section className="border-b border-[#e7e7e7] bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-7 md:py-9">
+          <p className="max-w-4xl text-sm font-semibold leading-relaxed tracking-[0.11em] text-[#293dff] md:text-base">
+            A distinguished Women's Day symposium bringing together powerful voices in leadership,
+            confidence, personal transformation and future-fit skills.
           </p>
-          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-ink/70">
-            {EVENT.date} · {EVENT.motto}
-          </p>
+          <div className="-mx-5 mt-5 flex snap-x snap-mandatory gap-2 overflow-x-auto px-5 pb-2 text-sm text-[#313131] [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-[auto_auto_1fr] md:gap-8 md:overflow-visible md:px-0 md:pb-0">
+            <span className="min-w-[210px] snap-start border-l-2 border-[#293dff] bg-[#f8f8f8] px-4 py-3 md:min-w-0 md:border-0 md:bg-transparent md:p-0">
+              {EVENT.date}
+            </span>
+            <span className="min-w-[190px] snap-start border-l-2 border-[#293dff] bg-[#f8f8f8] px-4 py-3 md:min-w-0 md:border-0 md:bg-transparent md:p-0">
+              {EVENT.time}
+            </span>
+            <span className="min-w-[280px] snap-start border-l-2 border-[#293dff] bg-[#f8f8f8] px-4 py-3 md:min-w-0 md:border-0 md:bg-transparent md:p-0">
+              {EVENT.venue}
+            </span>
+          </div>
         </div>
       </section>
 
-      {/* INTRO */}
-      <section className="border-y border-border bg-secondary/40">
-        <div className="mx-auto max-w-4xl px-5 py-20 text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-orange">This Women's Day</p>
-          <h2 className="mt-4 font-serif text-4xl leading-tight text-ink md:text-5xl">We rise with purpose.</h2>
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            The story of women is a story of courage, sacrifice, reinvention and possibility. Rise, South African Woman 2026 honours the women who came before us, celebrates the women leading today and prepares a new generation to shape the future with confidence.
+      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:py-24 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#293dff]">
+            The women shaping the room
           </p>
-          <Link to="/register" className="mt-8 inline-block rounded-full bg-violet px-6 py-3 text-sm font-semibold text-primary-foreground">
-            Secure my place
+          <h2 className="mt-5 text-6xl font-light uppercase leading-[0.88] tracking-[-0.05em] text-[#293dff] sm:text-7xl">
+            Featuring
+          </h2>
+          <p className="mt-8 max-w-sm text-base leading-relaxed text-[#525252]">
+            An intergenerational line-up of leaders, builders and change-makers gathered to help
+            women honour the past, own the present and shape the future.
+          </p>
+          <Link
+            to="/speakers"
+            className="mt-8 inline-flex border-b-2 border-[#293dff] pb-1 text-xs font-bold uppercase tracking-[0.2em] text-[#293dff] hover:border-black hover:text-black"
+          >
+            Meet every speaker
           </Link>
         </div>
-      </section>
 
-      {/* HIGHLIGHTS */}
-      <section className="mx-auto max-w-7xl px-5 py-24">
-        <div className="mb-14 max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-violet">An afternoon designed to move you forward</p>
-          <h2 className="mt-3 font-serif text-4xl text-ink md:text-5xl">Event highlights</h2>
-          <p className="mt-3 text-sm text-muted-foreground">Hover each tile to reveal what awaits.</p>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {HIGHLIGHTS.map((h, i) => (
-            <HighlightFlip key={h.title} index={i} title={h.title} body={h.body} />
+        <div className="space-y-0">
+          {FEATURED.map((speaker, index) => (
+            <FeaturedTile key={speaker.name} speaker={speaker} index={index} />
           ))}
         </div>
       </section>
 
-      {/* PROGRAMME PREVIEW */}
-      <section className="bg-ink py-24 text-cream">
-        <div className="mx-auto max-w-7xl px-5">
-          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-            <div className="max-w-xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-orange">Programme journey</p>
-              <h2 className="mt-3 font-serif text-4xl md:text-5xl">Six movements. One rising.</h2>
+      <section className="bg-white px-5 py-16 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#293dff]">
+              A day with purpose
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold uppercase leading-[0.95] tracking-[-0.04em] text-[#202020] md:text-6xl">
+              Make room to rise.
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-[#525252]">
+              Come for the voices. Leave with practical confidence, renewed purpose and a circle of
+              women moving forward together.
+            </p>
+          </div>
+          <div className="-mx-5 mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
+            {HIGHLIGHTS.slice(0, 6).map((highlight, index) => (
+              <div
+                key={highlight.title}
+                className="w-[82vw] max-w-[320px] shrink-0 snap-center md:w-auto md:max-w-none"
+              >
+                <HighlightFlip index={index} title={highlight.title} body={highlight.body} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#101010] px-5 py-16 text-white md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#9da7ff]">
+                Programme journey
+              </p>
+              <h2 className="mt-4 text-4xl font-semibold uppercase leading-[0.95] tracking-[-0.04em] md:text-6xl">
+                Six movements. One rising.
+              </h2>
             </div>
-            <Link to="/programme" className="rounded-full border border-cream/30 px-5 py-2.5 text-sm font-semibold text-cream hover:bg-cream hover:text-ink">
-              Full programme →
+            <Link
+              to="/programme"
+              className="border border-white/40 px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] transition-colors hover:bg-white hover:text-black"
+            >
+              Full programme
             </Link>
           </div>
-          <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {PROGRAMME.map((p, i) => (
-              <li key={p.title} className="rounded-2xl border border-cream/10 bg-cream/[0.03] p-6">
-                <div className="flex items-baseline gap-3">
-                  <span className="font-serif text-2xl text-orange">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="font-serif text-xl text-cream">{p.title}</h3>
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-cream/70">{p.body}</p>
+          <ol className="-mx-5 mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
+            {PROGRAMME.map((item, index) => (
+              <li
+                key={item.title}
+                className="w-[82vw] max-w-[320px] shrink-0 snap-center border border-white/15 p-6 transition-colors hover:border-[#293dff] md:w-auto md:max-w-none"
+              >
+                <span className="text-sm font-bold text-[#9da7ff]">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-8 text-2xl font-medium uppercase tracking-[-0.02em]">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/65">{item.body}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      {/* SPEAKERS PREVIEW */}
-      <section className="mx-auto max-w-7xl px-5 py-24">
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-          <div className="max-w-xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-violet">Meet the voices</p>
-            <h2 className="mt-3 font-serif text-4xl text-ink md:text-5xl">The line-up</h2>
-          </div>
-          <Link to="/speakers" className="rounded-full border border-ink/20 px-5 py-2.5 text-sm font-semibold text-ink hover:bg-ink hover:text-cream">
-            All speakers →
-          </Link>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {SPEAKERS.slice(0, 4).map((s) => (
-            <SpeakerFlipCard key={s.name} speaker={s} />
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="mx-auto max-w-6xl px-5 pb-24">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet via-violet to-orange p-10 text-cream md:p-16">
-          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-orange/50 blur-3xl" />
-          <div className="relative max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-cream/80">Seats are limited</p>
-            <h2 className="mt-3 font-serif text-4xl leading-tight md:text-6xl">
-              Reserve your place at Rise 2026.
-            </h2>
-            <p className="mt-5 text-cream/85">
-              {EVENT.date} · {EVENT.time} · {EVENT.venue}. Your R499 contribution is allocated entirely to food and refreshments at the venue restaurant.
+      <section className="bg-[#293dff] px-5 py-16 text-white md:py-24">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/75">
+              Seats are limited
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/register" className="rounded-full bg-cream px-6 py-3 text-sm font-semibold text-ink hover:bg-orange hover:text-cream">
-                Reserve in-person seat
-              </Link>
-              <Link to="/register" search={{}} className="rounded-full border border-cream/40 px-6 py-3 text-sm font-semibold text-cream hover:bg-cream/10">
-                Join online
-              </Link>
-            </div>
+            <h2 className="mt-4 text-5xl font-semibold uppercase leading-[0.9] tracking-[-0.05em] md:text-8xl">
+              Reserve your place.
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/85">
+              {EVENT.date} - {EVENT.time}. Your {EVENT.price} contribution is allocated to food and
+              refreshments at the venue restaurant.
+            </p>
           </div>
+          <Link
+            to="/register"
+            className="inline-flex shrink-0 bg-black px-7 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition-transform hover:-translate-y-1"
+          >
+            Register now
+          </Link>
         </div>
       </section>
     </div>
   );
 }
 
-function HighlightFlip({ index, title, body }: { index: number; title: string; body: string }) {
-  const accent = index % 2 === 0 ? "violet" : "orange";
+function FeaturedTile({ speaker, index }: { speaker: (typeof FEATURED)[number]; index: number }) {
   return (
-    <div className="group perspective-1000 h-56 w-full [&:hover_.flip-inner]:rotate-y-180 [&:focus-within_.flip-inner]:rotate-y-180">
-      <div tabIndex={0} className="flip-inner relative h-full w-full preserve-3d transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] outline-none">
-        <article className="absolute inset-0 backface-hidden rounded-2xl border border-border bg-card p-7 shadow-sm">
-          <div className={`mb-4 font-serif text-4xl ${accent === "violet" ? "text-violet" : "text-orange"}`}>
-            {String(index + 1).padStart(2, "0")}
+    <div className="focus-within:z-10">
+      <div className="grid grid-cols-2 border-b-2 border-white bg-white" aria-hidden="true">
+        <div
+          className={index === 0 ? "h-14 md:h-20" : "aspect-square"}
+          style={{ backgroundColor: speaker.accent }}
+        />
+        <div className={index === 0 ? "h-14 bg-[#f8f8f8] md:h-20" : "aspect-square bg-[#f8f8f8]"} />
+      </div>
+      <div className="group perspective-1000 aspect-[1.18/1] w-full sm:aspect-[2/1]">
+        <div
+          tabIndex={0}
+          className="flip-inner relative h-full w-full preserve-3d outline-none transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:rotate-y-180 group-focus-within:rotate-y-180"
+        >
+          <div className="absolute inset-0 grid grid-cols-2 backface-hidden overflow-hidden bg-black">
+            <img src={speaker.image} alt={speaker.name} className="h-full w-full object-cover" />
+            <div className="relative flex flex-col items-center justify-center border-l-2 border-white p-4 text-center text-white sm:p-6 md:p-8">
+              <p
+                className="text-2xl font-semibold uppercase leading-none tracking-[-0.045em] sm:text-3xl md:text-4xl"
+                style={{ color: speaker.labelColor }}
+              >
+                {speaker.panelLabel}
+              </p>
+              <div className="mt-7 md:mt-10">
+                <h3 className="text-sm font-medium leading-tight tracking-[-0.02em] sm:text-base md:text-lg">
+                  {speaker.name}
+                </h3>
+                <p className="mx-auto mt-2 max-w-[17rem] text-[10px] leading-tight text-white/80 sm:text-xs md:text-sm">
+                  {speaker.role}
+                </p>
+              </div>
+              <span className="absolute bottom-3 text-[8px] font-bold uppercase tracking-[0.2em] text-white/35 md:bottom-5 md:text-[9px]">
+                <span className="sm:hidden">Tap to flip</span>
+                <span className="hidden sm:inline">Hover to flip</span>
+              </span>
+            </div>
           </div>
-          <h3 className="font-serif text-xl leading-tight text-ink">{title}</h3>
-          <p className="mt-6 text-[10px] uppercase tracking-widest text-muted-foreground">Hover to explore →</p>
+          <div
+            className="absolute inset-0 rotate-y-180 backface-hidden p-7 text-white md:p-9"
+            style={{ backgroundColor: speaker.accent }}
+          >
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/65">
+              Rise 2026 / {String(index + 1).padStart(2, "0")}
+            </p>
+            <h3 className="mt-5 max-w-lg text-3xl font-semibold uppercase leading-tight tracking-[-0.03em]">
+              {speaker.name}
+            </h3>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-white/85">{speaker.bio}</p>
+            <span className="absolute bottom-7 right-7 text-4xl font-light text-white/60">↗</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HighlightFlip({ index, title, body }: { index: number; title: string; body: string }) {
+  return (
+    <div className="group perspective-1000 h-52 w-full">
+      <div
+        tabIndex={0}
+        className="flip-inner relative h-full w-full preserve-3d outline-none transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:rotate-y-180 group-focus-within:rotate-y-180"
+      >
+        <article className="absolute inset-0 backface-hidden border border-[#dedede] bg-[#f8f8f8] p-6">
+          <span className="text-3xl font-light text-[#293dff]">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 className="mt-8 max-w-xs text-xl font-semibold uppercase leading-tight tracking-[-0.02em]">
+            {title}
+          </h3>
+          <p className="absolute bottom-6 text-[10px] font-bold uppercase tracking-[0.22em] text-[#293dff]">
+            Hover to explore
+          </p>
         </article>
-        <article className={`absolute inset-0 rotate-y-180 backface-hidden rounded-2xl p-7 text-cream shadow-lg ${accent === "violet" ? "bg-violet" : "bg-orange"}`}>
-          <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-cream/80">Highlight {String(index + 1).padStart(2, "0")}</div>
-          <h3 className="font-serif text-lg leading-tight">{title}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-cream/95">{body}</p>
+        <article className="absolute inset-0 rotate-y-180 backface-hidden bg-[#293dff] p-6 text-white">
+          <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/65">
+            Highlight {String(index + 1).padStart(2, "0")}
+          </p>
+          <h3 className="mt-5 text-xl font-semibold uppercase leading-tight">{title}</h3>
+          <p className="mt-4 text-sm leading-relaxed text-white/90">{body}</p>
         </article>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import heroVenue from "../assets/hero-venue.png";
 import { EVENT } from "../lib/content";
 
 export const Route = createFileRoute("/attend")({
@@ -6,77 +7,218 @@ export const Route = createFileRoute("/attend")({
   head: () => ({
     meta: [
       { title: "Attend — Rise, South African Woman 2026" },
-      { name: "description", content: "Attend in person in Rosebank for R499 or join online. Your contribution covers food and refreshments at the venue." },
+      {
+        name: "description",
+        content:
+          "Attend in person in Rosebank for R499 or join online. Your contribution covers food and refreshments at the venue.",
+      },
       { property: "og:title", content: "Attend Rise 2026" },
-      { property: "og:description", content: "In-person or hybrid online — reserve your place at the Royal Majestic Hotel, Rosebank." },
+      {
+        property: "og:description",
+        content:
+          "In-person or hybrid online — reserve your place at the Royal Majestic Hotel, Rosebank.",
+      },
       { property: "og:url", content: "/attend" },
     ],
     links: [{ rel: "canonical", href: "/attend" }],
   }),
 });
 
+const inPersonBenefits = [
+  "Access to the complete conference programme",
+  "Food and refreshments",
+  "Meaningful networking",
+  "Interactive confidence and reflection activities",
+  "Access to selected post-event resources",
+];
+
+const onlineBenefits = [
+  "Live-streamed keynotes and panels",
+  "Event chat participation",
+  "Access to selected post-event resources",
+  "Community connection across locations",
+];
+
 function AttendPage() {
   return (
-    <div className="mx-auto max-w-6xl px-5 py-20">
-      <header className="mb-14 max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-widest text-orange">Hybrid participation</p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight text-ink md:text-6xl">
-          Join us from <span className="italic text-violet">wherever you are</span>.
-        </h1>
-        <p className="mt-5 text-lg text-muted-foreground">
-          Rise, South African Woman 2026 is a hybrid gathering. Guests attending in Johannesburg experience the complete in-person programme, dining and networking. Registered online participants follow the main sessions and connect with a wider community.
-        </p>
+    <div className="rise-support bg-[#f8f8f8] text-[#17161c]">
+      <header className="bg-[#293dff] text-white">
+        <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
+          <div className="flex min-h-[500px] flex-col justify-between px-5 py-14 sm:px-8 md:min-h-[610px] md:py-20 lg:px-12">
+            <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-white/65">
+              Hybrid participation / Johannesburg + online
+            </p>
+            <div>
+              <h1 className="max-w-3xl text-5xl font-semibold uppercase leading-[0.88] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
+                Be in the room. <span className="text-[#c7ccff]">Or join the rise online.</span>
+              </h1>
+              <p className="mt-8 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
+                One shared programme, two ways to participate—designed for connection, confidence
+                and practical momentum.
+              </p>
+            </div>
+          </div>
+          <div className="relative min-h-[380px] overflow-hidden border-t-2 border-white lg:min-h-full lg:border-l-2 lg:border-t-0">
+            <img
+              src={heroVenue}
+              alt="Royal Majestic Hotel ballroom"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-[#18104d]/60" />
+            <div className="absolute inset-x-0 bottom-0 grid grid-cols-2 border-t-2 border-white bg-black/80 backdrop-blur-sm">
+              <div className="border-r-2 border-white p-5 sm:p-7">
+                <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/55">
+                  When
+                </span>
+                <p className="mt-3 text-sm font-semibold uppercase leading-relaxed">
+                  08 August 2026
+                  <br />
+                  2:00–7:00 PM
+                </p>
+              </div>
+              <div className="p-5 sm:p-7">
+                <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/55">
+                  Where
+                </span>
+                <p className="mt-3 text-sm font-semibold uppercase leading-relaxed">
+                  Royal Majestic
+                  <br />
+                  Rosebank
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <article className="relative overflow-hidden rounded-3xl bg-ink p-10 text-cream">
-          <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-violet/40 blur-3xl" />
-          <p className="text-xs font-semibold uppercase tracking-widest text-orange">In-person</p>
-          <h2 className="mt-2 font-serif text-4xl">Your in-person experience</h2>
-          <p className="mt-4 font-serif text-5xl text-orange">R499<span className="text-lg text-cream/60"> / participant</span></p>
-          <p className="mt-4 text-sm leading-relaxed text-cream/75">
-            Your R499 attendance contribution is allocated entirely to your food and refreshments at the venue restaurant. The venue has generously been made available without a venue-hire charge, with the understanding that conference guests will dine through its restaurant.
+      <section className="mx-auto max-w-7xl px-5 py-16 md:py-24">
+        <div className="mb-10 max-w-3xl">
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#293dff]">
+            Choose your experience
           </p>
-          <ul className="mt-6 space-y-2 text-sm text-cream/85">
-            {["Access to the complete conference programme","Food and refreshments","Meaningful networking","Interactive confidence and reflection activities","Access to selected post-event resources"].map((b) => (
-              <li key={b} className="flex gap-2"><span className="text-orange">◆</span>{b}</li>
-            ))}
-          </ul>
-          <Link to="/register" className="mt-8 inline-block rounded-full bg-orange px-6 py-3 text-sm font-semibold text-cream">
-            Reserve my in-person seat
-          </Link>
-        </article>
+          <h2 className="mt-4 text-4xl font-semibold uppercase leading-[0.92] tracking-[-0.045em] sm:text-6xl">
+            The same energy.
+            <br />
+            Your way in.
+          </h2>
+        </div>
 
-        <article className="relative overflow-hidden rounded-3xl border border-border bg-card p-10">
-          <p className="text-xs font-semibold uppercase tracking-widest text-violet">Online</p>
-          <h2 className="mt-2 font-serif text-4xl text-ink">Join online</h2>
-          <p className="mt-4 font-serif text-5xl text-violet">Free registration</p>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Registered online participants follow the main sessions, engage through the event chat and connect with a wider community joining from different locations. Online access instructions will be issued to registered participants before the event.
-          </p>
-          <ul className="mt-6 space-y-2 text-sm text-ink">
-            {["Live-streamed keynotes and panels","Event chat participation","Access to selected post-event resources","Community connection across locations"].map((b) => (
-              <li key={b} className="flex gap-2"><span className="text-violet">◆</span>{b}</li>
-            ))}
-          </ul>
-          <Link to="/register" className="mt-8 inline-block rounded-full bg-violet px-6 py-3 text-sm font-semibold text-primary-foreground">
-            Register for online access
-          </Link>
-        </article>
-      </div>
+        <div className="grid border-2 border-[#101010] lg:grid-cols-2">
+          <AttendanceOption
+            eyebrow="In person / 01"
+            title="Your in-person experience"
+            price="R499"
+            suffix="per participant"
+            body="Your contribution is allocated entirely to food and refreshments at the venue restaurant. The venue has been made available without a venue-hire charge, with conference guests dining through its restaurant."
+            benefits={inPersonBenefits}
+            cta="Reserve my in-person seat"
+            dark
+          />
+          <AttendanceOption
+            eyebrow="Online / 02"
+            title="Join from anywhere"
+            price="Free"
+            suffix="registration"
+            body="Registered online participants follow the main sessions, engage through the event chat and connect with a wider community. Access instructions will be issued before the event."
+            benefits={onlineBenefits}
+            cta="Register for online access"
+          />
+        </div>
+      </section>
 
-      <section className="mt-14 rounded-3xl border-2 border-orange/40 bg-orange/5 p-10 text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest text-orange">Seats are limited</p>
-        <h2 className="mt-3 font-serif text-4xl text-ink">This is a curated experience.</h2>
-        <p className="mt-4 text-muted-foreground">
-          Attendance is subject to the venue's capacity. Reserve your place early to avoid disappointment.
-        </p>
-        <p className="mt-6 font-serif text-lg text-ink">{EVENT.date} · {EVENT.venue}</p>
-        <p className="text-sm text-muted-foreground">Programme begins at 2:00 PM</p>
-        <Link to="/register" className="mt-6 inline-block rounded-full bg-ink px-6 py-3 text-sm font-semibold text-cream">
-          Secure my seat for R499
-        </Link>
+      <section className="bg-[#101010] px-5 py-16 text-white md:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#9da7ff]">
+              Seats are limited
+            </p>
+            <h2 className="mt-4 max-w-4xl text-4xl font-semibold uppercase leading-[0.9] tracking-[-0.045em] sm:text-6xl">
+              A curated experience.
+              <br />
+              <span className="text-[#9da7ff]">A room worth entering.</span>
+            </h2>
+            <p className="mt-6 max-w-2xl text-sm leading-relaxed text-white/65">
+              Attendance is subject to venue capacity. {EVENT.date} · {EVENT.venue}. Programme
+              begins at 2:00 PM.
+            </p>
+          </div>
+          <Link
+            to="/register"
+            className="inline-flex bg-[#293dff] px-7 py-4 text-xs font-bold uppercase tracking-[0.16em] text-white transition-transform hover:-translate-y-1"
+          >
+            Secure my seat for R499
+          </Link>
+        </div>
       </section>
     </div>
+  );
+}
+
+function AttendanceOption({
+  eyebrow,
+  title,
+  price,
+  suffix,
+  body,
+  benefits,
+  cta,
+  dark = false,
+}: {
+  eyebrow: string;
+  title: string;
+  price: string;
+  suffix: string;
+  body: string;
+  benefits: string[];
+  cta: string;
+  dark?: boolean;
+}) {
+  return (
+    <article
+      className={`flex flex-col p-6 sm:p-9 lg:min-h-[700px] lg:p-12 ${dark ? "bg-[#101010] text-white" : "border-t-2 border-[#101010] bg-white text-[#17161c] lg:border-l-2 lg:border-t-0"}`}
+    >
+      <p
+        className={`text-[10px] font-bold uppercase tracking-[0.28em] ${dark ? "text-[#ff7836]" : "text-[#293dff]"}`}
+      >
+        {eyebrow}
+      </p>
+      <h3 className="mt-5 max-w-xl text-4xl font-semibold uppercase leading-[0.92] tracking-[-0.045em] sm:text-5xl">
+        {title}
+      </h3>
+      <div className="mt-10 border-y border-current/20 py-6">
+        <span
+          className={`text-6xl font-light uppercase tracking-[-0.06em] sm:text-7xl ${dark ? "text-[#ff7836]" : "text-[#293dff]"}`}
+        >
+          {price}
+        </span>
+        <span
+          className={`ml-3 text-xs uppercase tracking-[0.14em] ${dark ? "text-white/50" : "text-black/45"}`}
+        >
+          {suffix}
+        </span>
+      </div>
+      <p className={`mt-7 text-sm leading-relaxed ${dark ? "text-white/68" : "text-black/60"}`}>
+        {body}
+      </p>
+      <ol className="mt-8 border-t border-current/20">
+        {benefits.map((benefit, index) => (
+          <li
+            key={benefit}
+            className="grid grid-cols-[2rem_1fr] gap-3 border-b border-current/20 py-3 text-sm"
+          >
+            <span className={dark ? "text-[#ff7836]" : "text-[#293dff]"}>
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <span>{benefit}</span>
+          </li>
+        ))}
+      </ol>
+      <Link
+        to="/register"
+        className={`mt-9 inline-flex w-full justify-center px-5 py-4 text-center text-xs font-bold uppercase tracking-[0.13em] transition-transform hover:-translate-y-1 sm:w-fit ${dark ? "bg-[#ff7836] text-black" : "bg-[#293dff] text-white"}`}
+      >
+        {cta}
+      </Link>
+    </article>
   );
 }
