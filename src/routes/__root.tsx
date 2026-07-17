@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Join the Global Women's Future Skills Network in person at Royal Majestic Hotel Rosebank on 8 August 2026 for an inspiring Women's Day conference on confidence, leadership, transformation and future-fit skills.",
+          "Join the Global Women's Future Skills Network in person at Royal Majestic Hotel, Rosebank on 8 August 2026 for an inspiring Women's Day conference on confidence, leadership, transformation and future-fit skills.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Global Women's Future Skills Network" },

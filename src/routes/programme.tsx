@@ -57,7 +57,7 @@ function ProgrammePage() {
               <p className="mt-12 text-sm font-semibold uppercase leading-relaxed">
                 2:00–7:00 PM
                 <br />
-                Rosebank, Johannesburg
+                Royal Majestic Hotel, Rosebank
               </p>
             </div>
           </div>

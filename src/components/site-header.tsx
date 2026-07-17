@@ -99,7 +99,7 @@ export function SiteHeader() {
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/65">
             Saturday, 8 August 2026
           </p>
-          <p className="mt-2 text-lg font-semibold">Royal Majestic Hotel Rosebank</p>
+          <p className="mt-2 text-lg font-semibold">Royal Majestic Hotel, Rosebank</p>
           <Link
             to="/register"
             onClick={() => setMenuOpen(false)}

@@ -4,7 +4,7 @@ export const EVENT = {
   motto: "Honour the Past · Own the Present · Shape the Future",
   date: "Saturday, 8 August 2026",
   time: "2:00 PM – 7:00 PM",
-  venue: "Royal Majestic Hotel Rosebank",
+  venue: "Royal Majestic Hotel, Rosebank",
   price: "R499",
 };
 
@@ -98,10 +98,20 @@ export type Speaker = {
   image?: string;
 };
 
-export const SPEAKERS: Speaker[] = [
+const RAW_SPEAKERS: Speaker[] = [
   {
-    name: "Rev. Dr. Sam Oye",
+    name: "Yolanda Cuba",
     role: "Keynote Speaker",
+    affiliation: "MTN South Africa",
+    session: "Courage, Calling and the Confidence to Move Forward",
+    bio: "A powerful keynote exploring courage, reinvention, wellbeing, purpose, family, career and legacy, with reflections on leading through change while remaining grounded in one's values.",
+    themes: ["Courage and reinvention", "Leadership through change", "Emotional intelligence", "Wellbeing"],
+    accent: "orange",
+    image: "spk-yolanda",
+  },
+  {
+    name: "Rev Sam Oye",
+    role: "Guest Speaker",
     affiliation: "The Transforming Church",
     session: "Transform for the Future — The Power of Renewal",
     bio: "Rev. Dr. Sam Oye will deliver the event's keynote address on personal renewal, resilience, faith, purpose and intentional living. The keynote will encourage participants to recognise that transformation requires more than aspiration — it requires the courage to renew one's thinking, reconnect with purpose and move forward with clarity and conviction.",
@@ -118,7 +128,7 @@ export const SPEAKERS: Speaker[] = [
   },
   {
     name: "Yolanda Cuba",
-    role: "Fireside-Chat Guest",
+    role: "Keynote Speaker",
     affiliation: "MTN South Africa",
     session: "Courage, Calling and the Confidence to Move Forward",
     bio: "Yolanda Cuba will lead an intimate and thought-provoking fireside conversation exploring courage, reinvention, wellbeing, career, family, purpose and legacy — offering rare, honest reflections on navigating responsibility, change and leadership while remaining anchored in personal values.",
@@ -150,8 +160,8 @@ export const SPEAKERS: Speaker[] = [
     image: "spk-veronica",
   },
   {
-    name: "Joy Ogeh-Hutfield",
-    role: "Keynote Speaker & Confidence Coach",
+    name: "Joy Ugeh-Hutfield",
+    role: "Confidence Coach and Interactive Session Leader",
     session: "Own the Present — The Power of Self-Mastery",
     bio: "Joy Ogeh-Hutfield will deliver a keynote on self-mastery, authentic confidence, personal presence and intentional growth, and guide participants through an interactive Confidence Workout featuring affirmations, grounding practices and practical coaching moments designed to translate insight into embodied confidence.",
     themes: [
@@ -167,7 +177,7 @@ export const SPEAKERS: Speaker[] = [
   },
   {
     name: "Bess Rhirando",
-    role: "Event Host",
+    role: "Event Host and Opening Speaker",
     session: "Hosting the Rise experience",
     bio: "Bess Rhirando will host Rise, South African Woman 2026 and guide participants through the conference journey of legacy, confidence, transformation and future readiness — establishing the atmosphere, connecting programme segments and leading moments of reflection, celebration and the closing charge.",
     themes: [
@@ -183,7 +193,8 @@ export const SPEAKERS: Speaker[] = [
   },
   {
     name: "Dr. Ntombi Mhangwani",
-    role: "Panel Contributor",
+    name: "Dr. Ntombi Mhangwani (Guest)",
+    role: "Fireside Conversation Guest",
     session: "Women of Africa — Honouring Legacy, Leading Now and Shaping the Future",
     bio: "Dr. Ntombi Mhangwani will contribute to an intergenerational discussion examining how African women can honour their legacy while confidently responding to present and future leadership demands.",
     themes: [
@@ -209,15 +220,30 @@ export const SPEAKERS: Speaker[] = [
   },
 ];
 
+const SPEAKER_GUIDE: Record<string, Pick<Speaker, "name" | "role" | "session" | "bio">> = {
+  "Yolanda Cuba": { name: "Yolanda Cuba", role: "Keynote Speaker", session: "Courage, Calling and the Confidence to Move Forward", bio: "A powerful keynote exploring courage, reinvention, wellbeing, purpose, family, career and legacy, with reflections on leading through change while remaining grounded in one's values." },
+  "Veronica Motloutsi": { name: "Veronica Motloutsi", role: "Future-Fit Skills Masterclass Leader", session: "Shape the Future with Future-Fit Skills", bio: "A practical session focused on upskilling, digital transformation, adaptability, leadership readiness, professional visibility and the capabilities women need to remain relevant in a changing world." },
+  "Joy Ugeh-Hutfield": { name: "Joy Ugeh-Hutfield", role: "Confidence Coach and Interactive Session Leader", session: "Confidence Workout", bio: "A practical group-coaching experience using guided affirmations, grounding practices and confidence-building exercises to help participants strengthen their presence and personal power." },
+  "Rev Sam Oye": { name: "Rev Sam Oye", role: "Guest Speaker", session: "Transform for the Future: The Power of Renewal", bio: "An inspiring address on personal renewal, resilience, faith, purpose and intentional living, encouraging participants to step courageously into their next season." },
+  "Lauren Hutfield": { name: "Lauren Hutfield", role: "Youth Speaker", session: "Shape the future young, African and Unstoppable", bio: "A youth-centred reflection on purpose, identity, confidence, social-media pressure and the responsibility of the next generation to shape Africa's future." },
+  "Dr. Ntombi Mhangwani (Guest)": { name: "Dr. Ntombi Mhangwani (Guest)", role: "Fireside Conversation Guest", session: "Women of Africa: Honouring Legacy, leading now and shaping the future", bio: "An honest and practical conversation about leadership, career transitions, emotional intelligence, confidence, financial power, mentorship and authenticity." },
+  "Bess Rhirando": { name: "Bess Rhirando", role: "Event Host and Opening Speaker", session: "Honour the past. Rise with purpose", bio: "A powerful opening reflection honouring the courage of the women who came before us and inviting today's women to lead with purpose, emotional intelligence and self-awareness." },
+};
+
+export const SPEAKERS: Speaker[] = Object.values(SPEAKER_GUIDE).map((guide) => ({
+  ...RAW_SPEAKERS.find((speaker) => speaker.name === guide.name || speaker.name.startsWith(guide.name))!,
+  ...guide,
+}));
+
 export const FAQ = [
   { q: "When is the event?", a: "Saturday, 8 August 2026, from 2:00 PM to 7:00 PM." },
   {
     q: "Where will the event take place?",
-    a: "Royal Majestic Hotel Rosebank.",
+    a: "Royal Majestic Hotel, Rosebank.",
   },
   {
     q: "Where can I attend the event?",
-    a: "Rise, South African Woman 2026 is an in-person event at Royal Majestic Hotel Rosebank.",
+    a: "Rise, South African Woman 2026 is an in-person event at Royal Majestic Hotel, Rosebank.",
   },
   {
     q: "What does the R499 contribution cover?",

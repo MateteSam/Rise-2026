@@ -7,7 +7,7 @@ import speakerVeronica from "../assets/speaker-veronica.png";
 import speakerYolanda from "../assets/speaker-yolanda.png";
 import speakerJoy from "../assets/speaker-joy.png";
 import speakerLauren from "../assets/speaker-lauren-hutfield.jpg";
-import { EVENT, HIGHLIGHTS, PROGRAMME } from "../lib/content";
+import { EVENT, HIGHLIGHTS, PROGRAMME, SPEAKERS } from "../lib/content";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A premium Women's Day experience at Royal Majestic Hotel Rosebank on 8 August 2026.",
+          "A premium Women's Day experience at Royal Majestic Hotel, Rosebank on 8 August 2026.",
       },
       { property: "og:title", content: "Rise, South African Woman 2026" },
     ],
@@ -114,7 +114,7 @@ function Index() {
             </h1>
             <p className="mt-7 max-w-2xl text-sm font-medium uppercase leading-relaxed tracking-[0.17em] text-white/90 md:text-lg">
               A premium Women's Day experience at the five-star
-              <br className="hidden md:block" /> Royal Majestic Hotel Rosebank
+              <br className="hidden md:block" /> Royal Majestic Hotel, Rosebank
             </p>
             <div className="mt-9 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
               <Link
@@ -272,6 +272,15 @@ function Index() {
 }
 
 function FeaturedTile({ speaker, index }: { speaker: (typeof FEATURED)[number]; index: number }) {
+  const guide = SPEAKERS.find((item) =>
+    speaker.name.includes("Yolanda") ? item.name.startsWith("Yolanda") :
+    speaker.name.includes("Veronica") ? item.name.startsWith("Veronica") :
+    speaker.name.includes("Joy") ? item.name.startsWith("Joy") :
+    speaker.name.includes("Ntombi") ? item.name.startsWith("Dr. Ntombi") :
+    speaker.name.includes("Sam") ? item.name.startsWith("Rev Sam") :
+    speaker.name.includes("Bess") ? item.name.startsWith("Bess") :
+    item.name.startsWith("Lauren")
+  );
   return (
     <div className="focus-within:z-10">
       <div className="grid grid-cols-2 border-b-2 border-white bg-white" aria-hidden="true">
@@ -300,7 +309,7 @@ function FeaturedTile({ speaker, index }: { speaker: (typeof FEATURED)[number]; 
                   {speaker.name}
                 </h3>
                 <p className="mx-auto mt-2 max-w-[17rem] text-[10px] leading-tight text-white/80 sm:text-xs md:text-sm">
-                  {speaker.role}
+                  {guide?.role ?? speaker.role}
                 </p>
               </div>
               <span className="absolute bottom-3 text-[8px] font-bold uppercase tracking-[0.2em] text-white/35 md:bottom-5 md:text-[9px]">
@@ -319,7 +328,8 @@ function FeaturedTile({ speaker, index }: { speaker: (typeof FEATURED)[number]; 
             <h3 className="mt-5 max-w-lg text-3xl font-semibold uppercase leading-tight tracking-[-0.03em]">
               {speaker.name}
             </h3>
-            <p className="mt-4 max-w-md text-base leading-relaxed text-white/85">{speaker.bio}</p>
+            <p className="mt-4 max-w-md text-base font-semibold leading-relaxed text-white/90">Session - {guide?.session}</p>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-white/80">{guide?.bio ?? speaker.bio}</p>
             <span className="absolute bottom-7 right-7 text-4xl font-light text-white/60">↗</span>
           </div>
         </div>

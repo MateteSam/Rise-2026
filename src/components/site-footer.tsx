@@ -79,7 +79,7 @@ export function SiteFooter() {
           <ul className="space-y-2 text-sm text-white/75">
             <li>Sat, 8 August 2026</li>
             <li>2:00 - 7:00 PM SAST</li>
-            <li>Royal Majestic Hotel Rosebank</li>
+            <li>Royal Majestic Hotel, Rosebank</li>
           </ul>
         </div>
       </div>
