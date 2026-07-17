@@ -298,17 +298,14 @@ function FeaturedTile({ speaker, index }: { speaker: (typeof FEATURED)[number]; 
           <div className="absolute inset-0 grid grid-cols-2 backface-hidden overflow-hidden bg-black">
             <img src={speaker.image} alt={speaker.name} className="h-full w-full object-cover" />
             <div className="relative flex flex-col items-center justify-center border-l-2 border-white p-4 text-center text-white sm:p-6 md:p-8">
-              <p
-                className="text-2xl font-semibold uppercase leading-none tracking-[-0.045em] sm:text-3xl md:text-4xl"
-                style={{ color: speaker.labelColor }}
-              >
-                {speaker.panelLabel}
-              </p>
-              <div className="mt-7 md:mt-10">
-                <h3 className="text-sm font-medium leading-tight tracking-[-0.02em] sm:text-base md:text-lg">
+              <div className="mt-2 md:mt-4">
+                <h3 className="text-lg font-semibold leading-tight tracking-[-0.03em] sm:text-xl md:text-2xl">
                   {speaker.name}
                 </h3>
-                <p className="mx-auto mt-2 max-w-[17rem] text-[10px] leading-tight text-white/80 sm:text-xs md:text-sm">
+                <p
+                  className="mx-auto mt-3 max-w-[17rem] text-xs font-semibold leading-snug sm:text-sm md:text-base"
+                  style={{ color: speaker.labelColor }}
+                >
                   {guide?.role ?? speaker.role}
                 </p>
               </div>
