@@ -192,7 +192,6 @@ const RAW_SPEAKERS: Speaker[] = [
     image: "spk-bess",
   },
   {
-    name: "Dr. Ntombi Mhangwani",
     name: "Dr. Ntombi Mhangwani (Guest)",
     role: "Fireside Conversation Guest",
     session: "Women of Africa — Honouring Legacy, Leading Now and Shaping the Future",
