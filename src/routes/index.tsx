@@ -72,7 +72,7 @@ const FEATURED = [
     bio: "The power of renewal, resilience, faith and purpose.",
   },
   {
-    name: "Prophetess Bess Rhiranda",
+    name: "Prophetess Bess Rhirando",
     role: "General Manager and Regional Talent Leader, MTN Group",
     image: speakerBess,
     accent: "#4b211f",
