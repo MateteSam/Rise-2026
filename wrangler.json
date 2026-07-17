@@ -1,0 +1,10 @@
+{
+  "name": "matetesam-pixel-perfect-replica-4f364e3f",
+  "main": "dist/server/server.js",
+  "compatibility_date": "2026-07-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "dist/client"
+  }
+}
