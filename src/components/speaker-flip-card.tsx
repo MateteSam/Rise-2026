@@ -4,6 +4,7 @@ import spkVeronica from "../assets/speaker-veronica.png";
 import spkBess from "../assets/speaker-bess.png";
 import spkNtombi from "../assets/speaker-ntombi.png";
 import spkJoy from "../assets/speaker-joy.png";
+import spkLauren from "../assets/speaker-lauren-hutfield.jpg";
 import type { Speaker } from "../lib/content";
 
 const IMAGES: Record<string, string> = {
@@ -13,6 +14,7 @@ const IMAGES: Record<string, string> = {
   "spk-bess": spkBess,
   "spk-ntombi": spkNtombi,
   "spk-joy": spkJoy,
+  "spk-lauren-hutfield": spkLauren,
 };
 
 export function SpeakerFlipCard({ speaker }: { speaker: Speaker }) {

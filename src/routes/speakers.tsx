@@ -10,7 +10,7 @@ export const Route = createFileRoute("/speakers")({
       {
         name: "description",
         content:
-          "Meet the speakers of Rise 2026: Rev. Dr. Sam Oye, Yolanda Cuba, Veronica Motloutsi, Joy Ogeh-Hutfield, Bess Rhirando and Dr. Ntombi Mhangwani.",
+          "Meet the speakers of Rise 2026: Rev. Dr. Sam Oye, Yolanda Cuba, Veronica Motloutsi, Joy Ogeh-Hutfield, Bess Rhirando, Dr. Ntombi Mhangwani and Lauren Hutfield.",
       },
       { property: "og:title", content: "Speakers — Rise 2026" },
       {

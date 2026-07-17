@@ -6,6 +6,7 @@ import speakerSam from "../assets/speaker-sam-oye.jpg";
 import speakerVeronica from "../assets/speaker-veronica.png";
 import speakerYolanda from "../assets/speaker-yolanda.png";
 import speakerJoy from "../assets/speaker-joy.png";
+import speakerLauren from "../assets/speaker-lauren-hutfield.jpg";
 import { EVENT, HIGHLIGHTS, PROGRAMME } from "../lib/content";
 
 export const Route = createFileRoute("/")({
@@ -16,7 +17,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A premium Women's Day experience at The Royal Majestic Hotel, Rosebank on 8 August 2026.",
+          "A premium Women's Day experience at Royal Majestic Hotel Rosebank on 8 August 2026.",
       },
       { property: "og:title", content: "Rise, South African Woman 2026" },
     ],
@@ -79,6 +80,15 @@ const FEATURED = [
     labelColor: "#8a6856",
     bio: "Our host, guiding the Rise experience from welcome to closing charge.",
   },
+  {
+    name: "Lauren Hutfield",
+    role: "Youth Speaker",
+    image: speakerLauren,
+    accent: "#293dff",
+    panelLabel: "SPEAKER",
+    labelColor: "#9da7ff",
+    bio: "Shaping the future young, African and unstoppable.",
+  },
 ] as const;
 
 function Index() {
@@ -104,7 +114,7 @@ function Index() {
             </h1>
             <p className="mt-7 max-w-2xl text-sm font-medium uppercase leading-relaxed tracking-[0.17em] text-white/90 md:text-lg">
               A premium Women's Day experience at the five-star
-              <br className="hidden md:block" /> The Royal Majestic Hotel, Rosebank
+              <br className="hidden md:block" /> Royal Majestic Hotel Rosebank
             </p>
             <div className="mt-9 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
               <Link

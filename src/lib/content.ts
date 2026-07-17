@@ -4,19 +4,19 @@ export const EVENT = {
   motto: "Honour the Past · Own the Present · Shape the Future",
   date: "Saturday, 8 August 2026",
   time: "2:00 PM – 7:00 PM",
-  venue: "The Royal Majestic Hotel, Rosebank, Johannesburg",
+  venue: "Royal Majestic Hotel Rosebank",
   price: "R499",
 };
 
 export const REGISTRATION_EMAIL = "registrations@gwfsn.org";
 
 export const BANKING = {
-  bankName: "First National Bank (FNB)",
-  accountName: "Global Women's Future Skills Network",
-  accountType: "Business Cheque Account",
-  accountNumber: "62890123456",
-  branchCode: "250655",
-  swift: "FIRNZAJJ",
+  bankName: "Standard Bank",
+  accountName: "TTC International",
+  accountType: "",
+  accountNumber: "10236286720",
+  branchCode: "",
+  swift: "",
   reference: "RISE2026-YourFullName",
   email: REGISTRATION_EMAIL,
 };
@@ -198,17 +198,26 @@ export const SPEAKERS: Speaker[] = [
     accent: "orange",
     image: "spk-ntombi",
   },
+  {
+    name: "Lauren Hutfield",
+    role: "Youth Speaker",
+    session: "Shape the future young, African and Unstoppable",
+    bio: "A youth-centred reflection on purpose, identity, confidence, social-media pressure and the responsibility of the next generation to shape Africa's future.",
+    themes: ["Purpose and identity", "Youth confidence", "Social-media pressure", "Africa's future"],
+    accent: "violet",
+    image: "spk-lauren-hutfield",
+  },
 ];
 
 export const FAQ = [
   { q: "When is the event?", a: "Saturday, 8 August 2026, from 2:00 PM to 7:00 PM." },
   {
     q: "Where will the event take place?",
-    a: "The Royal Majestic Hotel in Rosebank, Johannesburg.",
+    a: "Royal Majestic Hotel Rosebank.",
   },
   {
-    q: "Is the event available online?",
-    a: "Yes. Rise, South African Woman 2026 is a hybrid event. Participants may attend in person or register for online access.",
+    q: "Where can I attend the event?",
+    a: "Rise, South African Woman 2026 is an in-person event at Royal Majestic Hotel Rosebank.",
   },
   {
     q: "What does the R499 contribution cover?",

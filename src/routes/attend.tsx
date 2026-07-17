@@ -10,13 +10,13 @@ export const Route = createFileRoute("/attend")({
       {
         name: "description",
         content:
-          "Attend in person in Rosebank for R499 or join online. Your contribution covers food and refreshments at the venue.",
+          "Attend in person at Royal Majestic Hotel Rosebank for R499. Your contribution covers food and refreshments at the venue.",
       },
       { property: "og:title", content: "Attend Rise 2026" },
       {
         property: "og:description",
         content:
-          "In-person or hybrid online — reserve your place at the Royal Majestic Hotel, Rosebank.",
+          "Reserve your in-person place at Royal Majestic Hotel Rosebank.",
       },
       { property: "og:url", content: "/attend" },
     ],
@@ -32,13 +32,6 @@ const inPersonBenefits = [
   "Access to selected post-event resources",
 ];
 
-const onlineBenefits = [
-  "Live-streamed keynotes and panels",
-  "Event chat participation",
-  "Access to selected post-event resources",
-  "Community connection across locations",
-];
-
 function AttendPage() {
   return (
     <div className="rise-support bg-[#f8f8f8] text-[#17161c]">
@@ -46,11 +39,11 @@ function AttendPage() {
         <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
           <div className="flex min-h-[500px] flex-col justify-between px-5 py-14 sm:px-8 md:min-h-[610px] md:py-20 lg:px-12">
             <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-white/65">
-              Hybrid participation / Johannesburg + online
+              In-person experience / Johannesburg
             </p>
             <div>
               <h1 className="max-w-3xl text-5xl font-semibold uppercase leading-[0.88] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
-                Be in the room. <span className="text-[#c7ccff]">Or join the rise online.</span>
+                Be in the room. <span className="text-[#c7ccff]">Step into the rise.</span>
               </h1>
               <p className="mt-8 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
                 One shared programme, two ways to participate—designed for connection, confidence
@@ -81,7 +74,7 @@ function AttendPage() {
                   Where
                 </span>
                 <p className="mt-3 text-sm font-semibold uppercase leading-relaxed">
-                  Royal Majestic
+                  Royal Majestic Hotel
                   <br />
                   Rosebank
                 </p>
@@ -103,7 +96,7 @@ function AttendPage() {
           </h2>
         </div>
 
-        <div className="grid border-2 border-[#101010] lg:grid-cols-2">
+        <div className="max-w-2xl border-2 border-[#101010]">
           <AttendanceOption
             eyebrow="In person / 01"
             title="Your in-person experience"
@@ -113,15 +106,6 @@ function AttendPage() {
             benefits={inPersonBenefits}
             cta="Reserve my in-person seat"
             dark
-          />
-          <AttendanceOption
-            eyebrow="Online / 02"
-            title="Join from anywhere"
-            price="Free"
-            suffix="registration"
-            body="Registered online participants follow the main sessions, engage through the event chat and connect with a wider community. Access instructions will be issued before the event."
-            benefits={onlineBenefits}
-            cta="Register for online access"
           />
         </div>
       </section>

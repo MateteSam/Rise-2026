@@ -9,7 +9,7 @@ export const Route = createFileRoute("/register")({
       { title: "Register — Rise, South African Woman 2026" },
       {
         name: "description",
-        content: "Register for Rise, South African Woman 2026 — in person in Rosebank or online.",
+        content: "Register for Rise, South African Woman 2026 in person at Royal Majestic Hotel Rosebank.",
       },
       { property: "og:title", content: "Register for Rise 2026" },
       {
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/register")({
   }),
 });
 
-type Format = "in-person" | "online";
+type Format = "in-person";
 type SubmittedRegistration = {
   firstName: string;
   format: Format;
@@ -40,7 +40,7 @@ function RegisterPage() {
     const firstName = String(data.get("firstName") || "Friend").trim();
     const lastName = String(data.get("lastName") || "").trim();
     const fullName = [firstName, lastName].filter(Boolean).join(" ") || "Website visitor";
-    const attendance = format === "in-person" ? "In Person" : "Online";
+    const attendance = "In Person";
     const mailto = `mailto:${REGISTRATION_EMAIL}?subject=${encodeURIComponent(
       `Rise 2026 registration — ${fullName}`,
     )}&body=${encodeURIComponent(
@@ -76,7 +76,7 @@ function RegisterPage() {
             ["Date", EVENT.date],
             ["Time", EVENT.time],
             ["Venue", EVENT.venue],
-            ["Attendance", submitted.format === "in-person" ? "In Person" : "Online"],
+            ["Attendance", "In Person"],
           ].map(([k, v]) => (
             <div
               key={k}
@@ -119,7 +119,7 @@ function RegisterPage() {
         <div className="mt-8 rounded-2xl border border-border bg-secondary/40 p-6 text-sm text-muted-foreground">
           In-person guests are encouraged to arrive from{" "}
           <strong className="text-ink">1:30 PM</strong> to allow sufficient time for registration
-          and seating. Online access instructions will be issued before the event.
+          and seating. This is an in-person event at Royal Majestic Hotel Rosebank.
         </div>
       </aside>
 
@@ -128,8 +128,8 @@ function RegisterPage() {
           <legend className="mb-3 block text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Attendance format
           </legend>
-          <div className="grid grid-cols-2 gap-3">
-            {(["in-person", "online"] as const).map((f) => (
+          <div className="grid gap-3">
+            {(["in-person"] as const).map((f) => (
               <label
                 key={f}
                 className={`cursor-pointer rounded-xl border p-4 text-center transition-all ${
@@ -147,10 +147,10 @@ function RegisterPage() {
                   onChange={() => setFormat(f)}
                 />
                 <span className="block font-serif text-lg text-ink">
-                  {f === "in-person" ? "In Person" : "Online"}
+                  In Person
                 </span>
                 <span className="text-xs">
-                  {f === "in-person" ? "R499 · Rosebank" : "Free · Hybrid stream"}
+                  R499 · Royal Majestic Hotel Rosebank
                 </span>
               </label>
             ))}
@@ -182,7 +182,7 @@ function RegisterPage() {
         >
           {format === "in-person"
             ? `Reserve my seat — ${EVENT.price}`
-            : "Register for online access"}
+            : "Register for in-person access"}
         </button>
         <p className="mt-3 text-center text-xs text-muted-foreground">
           Photography and video recording may take place during the event.
@@ -201,10 +201,7 @@ function BankingPanel({ firstName }: { firstName?: string } = {}) {
   const rows: [string, string][] = [
     ["Bank", BANKING.bankName],
     ["Account name", BANKING.accountName],
-    ["Account type", BANKING.accountType],
     ["Account number", BANKING.accountNumber],
-    ["Branch code", BANKING.branchCode],
-    ["SWIFT / BIC", BANKING.swift],
     ["Reference", reference],
     ["Amount", `${EVENT.price} (in-person)`],
   ];
