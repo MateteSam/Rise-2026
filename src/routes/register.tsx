@@ -1,15 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { EVENT, BANKING, REGISTRATION_EMAIL } from "../lib/content";
+import { registerRiseAttendeeFn } from "../lib/rise-registration.functions";
 
 export const Route = createFileRoute("/register")({
   component: RegisterPage,
   head: () => ({
     meta: [
-      { title: "Register — Rise, South African Woman 2026" },
+      { title: "Register - Rise, South African Woman 2026" },
       {
         name: "description",
-        content: "Register for Rise, South African Woman 2026 in person at Royal Majestic Hotel Rosebank.",
+        content:
+          "Register for Rise, South African Woman 2026 in person at Royal Majestic Hotel Rosebank.",
       },
       { property: "og:title", content: "Register for Rise 2026" },
       {
@@ -27,50 +29,70 @@ type Format = "in-person";
 type SubmittedRegistration = {
   firstName: string;
   format: Format;
-  mailto: string;
+  paymentReference: string;
+  paymentUploadToken: string;
+  emailStatus: "sent" | "pending";
 };
 
 function RegisterPage() {
   const [format, setFormat] = useState<Format>("in-person");
   const [submitted, setSubmitted] = useState<SubmittedRegistration | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const firstName = String(data.get("firstName") || "Friend").trim();
     const lastName = String(data.get("lastName") || "").trim();
-    const fullName = [firstName, lastName].filter(Boolean).join(" ") || "Website visitor";
-    const attendance = "In Person";
-    const mailto = `mailto:${REGISTRATION_EMAIL}?subject=${encodeURIComponent(
-      `Rise 2026 registration — ${fullName}`,
-    )}&body=${encodeURIComponent(
-      [
-        "New Rise, South African Woman 2026 registration",
-        "",
-        `Name: ${fullName}`,
-        `Email: ${String(data.get("email") || "Not provided")}`,
-        `Phone / WhatsApp: ${String(data.get("phone") || "Not provided")}`,
-        `Organisation: ${String(data.get("organisation") || "Not provided")}`,
-        `Attendance: ${attendance}`,
-        `Notes: ${String(data.get("notes") || "None")}`,
-      ].join("\n"),
-    )}`;
-
-    setSubmitted({ firstName, format, mailto });
-    window.location.href = mailto;
+    setIsSubmitting(true);
+    setErrorMessage(null);
+    try {
+      const result = await registerRiseAttendeeFn({
+        data: {
+          firstName,
+          lastName,
+          email: String(data.get("email") || "").trim(),
+          phone: String(data.get("phone") || "").trim(),
+          organisation: String(data.get("organisation") || "").trim() || undefined,
+          attendanceFormat: "in-person",
+          notes: String(data.get("notes") || "").trim() || undefined,
+        },
+      });
+      setSubmitted({
+        firstName,
+        format,
+        paymentReference: result.paymentReference,
+        paymentUploadToken: result.paymentUploadToken,
+        emailStatus: result.emailStatus,
+      });
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(
+        "We could not complete your registration just now. Please try again, or contact registrations@gwfsn.org.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (submitted) {
     return (
       <div className="mx-auto max-w-2xl px-5 py-24 text-center">
         <p className="text-xs font-semibold uppercase tracking-widest text-orange">
-          Registration email prepared
+          Registration received
         </p>
         <h1 className="mt-4 font-serif text-5xl text-ink">Thank you, {submitted.firstName}.</h1>
         <p className="mt-6 text-lg text-muted-foreground">
-          Your registration email is addressed to {REGISTRATION_EMAIL}. If your email app did not
-          open automatically, use the button below to open it.
+          Your place has been reserved. We have sent your payment instructions and unique reference
+          to your inbox.
         </p>
+        {submitted.emailStatus === "pending" && (
+          <p className="mx-auto mt-5 max-w-md rounded-xl border border-orange/30 bg-orange/10 px-4 py-3 text-sm text-ink">
+            Your registration is saved, but email delivery is still pending. Please contact{" "}
+            {REGISTRATION_EMAIL} if you do not receive it shortly.
+          </p>
+        )}
         <dl className="mx-auto mt-10 grid max-w-md gap-4 text-left">
           {[
             ["Date", EVENT.date],
@@ -87,17 +109,29 @@ function RegisterPage() {
             </div>
           ))}
         </dl>
+        <div className="mx-auto mt-8 max-w-md rounded-2xl border border-violet/20 bg-violet/5 p-5 text-left">
+          <p className="text-xs font-semibold uppercase tracking-widest text-violet">
+            Payment reference
+          </p>
+          <p className="mt-2 break-all font-mono text-lg font-semibold text-ink">
+            {submitted.paymentReference}
+          </p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Use this exact reference when making your EFT payment.
+          </p>
+        </div>
+        <div className="mt-10">
+          <BankingPanel paymentReference={submitted.paymentReference} />
+        </div>
         <a
-          href={submitted.mailto}
-          className="mt-8 inline-flex rounded-full bg-violet px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-ink"
+          href={`/payment-proof?ref=${encodeURIComponent(submitted.paymentReference)}&token=${encodeURIComponent(submitted.paymentUploadToken)}`}
+          className="mx-auto mt-6 block max-w-md rounded-full bg-orange px-6 py-4 text-sm font-semibold text-ink transition hover:bg-cream"
         >
-          Open registration email
+          Upload proof of payment
         </a>
-        {submitted.format === "in-person" && (
-          <div className="mt-10">
-            <BankingPanel firstName={submitted.firstName} />
-          </div>
-        )}
+        <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground">
+          PDF, JPG or PNG · private upload · up to 10 MB
+        </p>
         <p className="mt-10 font-serif text-xl italic text-violet">
           Come ready to honour the past, own the present and shape the future.
         </p>
@@ -128,33 +162,20 @@ function RegisterPage() {
           <legend className="mb-3 block text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Attendance format
           </legend>
-          <div className="grid gap-3">
-            {(["in-person"] as const).map((f) => (
-              <label
-                key={f}
-                className={`cursor-pointer rounded-xl border p-4 text-center transition-all ${
-                  format === f
-                    ? "border-violet bg-violet/5 text-ink"
-                    : "border-border text-muted-foreground hover:border-ink/30"
-                }`}
-              >
-                <input
-                  type="radio"
-                  name="format"
-                  value={f}
-                  className="sr-only"
-                  checked={format === f}
-                  onChange={() => setFormat(f)}
-                />
-                <span className="block font-serif text-lg text-ink">
-                  In Person
-                </span>
-                <span className="text-xs">
-                  R499 · Royal Majestic Hotel Rosebank
-                </span>
-              </label>
-            ))}
-          </div>
+          <label
+            className={`block cursor-pointer rounded-xl border p-4 text-center transition-all ${format === "in-person" ? "border-violet bg-violet/5 text-ink" : "border-border text-muted-foreground hover:border-ink/30"}`}
+          >
+            <input
+              type="radio"
+              name="format"
+              value="in-person"
+              className="sr-only"
+              checked={format === "in-person"}
+              onChange={() => setFormat("in-person")}
+            />
+            <span className="block font-serif text-lg text-ink">In Person</span>
+            <span className="text-xs">R499 · Royal Majestic Hotel Rosebank</span>
+          </label>
         </fieldset>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -164,7 +185,6 @@ function RegisterPage() {
           <Field name="phone" label="Phone / WhatsApp" type="tel" required />
           <Field name="organisation" label="Organisation (optional)" />
         </div>
-
         <label className="mt-4 block">
           <span className="mb-1 block text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Anything we should know?
@@ -175,14 +195,20 @@ function RegisterPage() {
             className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-ink outline-none focus:border-violet"
           />
         </label>
-
+        {errorMessage && (
+          <p
+            role="alert"
+            className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+          >
+            {errorMessage}
+          </p>
+        )}
         <button
           type="submit"
-          className="mt-6 w-full rounded-full bg-violet px-6 py-4 text-sm font-semibold text-primary-foreground hover:bg-ink"
+          disabled={isSubmitting}
+          className="mt-6 w-full rounded-full bg-violet px-6 py-4 text-sm font-semibold text-primary-foreground hover:bg-ink disabled:cursor-wait disabled:opacity-60"
         >
-          {format === "in-person"
-            ? `Reserve my seat — ${EVENT.price}`
-            : "Register for in-person access"}
+          {isSubmitting ? "Securing your place…" : `Reserve my seat — ${EVENT.price}`}
         </button>
         <p className="mt-3 text-center text-xs text-muted-foreground">
           Photography and video recording may take place during the event.
@@ -196,8 +222,8 @@ function RegisterPage() {
   );
 }
 
-function BankingPanel({ firstName }: { firstName?: string } = {}) {
-  const reference = firstName ? `RISE2026-${firstName.replace(/\s+/g, "")}` : BANKING.reference;
+function BankingPanel({ paymentReference }: { paymentReference?: string } = {}) {
+  const reference = paymentReference ?? BANKING.reference;
   const rows: [string, string][] = [
     ["Bank", BANKING.bankName],
     ["Account name", BANKING.accountName],
@@ -208,12 +234,10 @@ function BankingPanel({ firstName }: { firstName?: string } = {}) {
   return (
     <section className="overflow-hidden rounded-3xl border border-violet/20 bg-gradient-to-br from-violet/95 via-violet to-ink text-cream shadow-xl">
       <div className="border-b border-cream/15 px-5 py-5 sm:px-7">
-        <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-orange">
-            Payment · EFT / Bank Transfer
-          </p>
-          <h2 className="mt-1 font-serif text-2xl">Banking details</h2>
-        </div>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-orange">
+          Payment · EFT / Bank Transfer
+        </p>
+        <h2 className="mt-1 font-serif text-2xl">Banking details</h2>
       </div>
       <dl className="grid grid-cols-1 divide-y divide-cream/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0">
         <div className="divide-y divide-cream/10">
@@ -236,7 +260,7 @@ function BankingPanel({ firstName }: { firstName?: string } = {}) {
         >
           {BANKING.email}
         </a>{" "}
-        and your confirmation will follow within 24 hours.
+        and your confirmation will follow once payment is verified.
       </p>
     </section>
   );

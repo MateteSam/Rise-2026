@@ -2,6 +2,11 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import {
+  handleRiseAdminRequest,
+  handleRisePaymentProofRequest,
+  runRiseReminderJob,
+} from "./lib/rise-communications.server";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -47,6 +52,29 @@ function isH3SwallowedErrorBody(body: string): boolean {
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const runtimeEnv = (env ?? {}) as Record<string, unknown>;
+      for (const key of [
+        "SUPABASE_URL",
+        "SUPABASE_ANON_KEY",
+        "SUPABASE_SERVICE_ROLE_KEY",
+        "RESEND_API_KEY",
+        "RESEND_FROM_EMAIL",
+        "RISE_INTERNAL_EMAIL",
+        "PUBLIC_SITE_URL",
+      ]) {
+        const value = runtimeEnv[key];
+        if (typeof value === "string" && value) process.env[key] = value;
+      }
+      const riseAdminResponse = await handleRiseAdminRequest(
+        request,
+        (env ?? {}) as Record<string, unknown>,
+      );
+      if (riseAdminResponse) return riseAdminResponse;
+      const risePaymentProofResponse = await handleRisePaymentProofRequest(
+        request,
+        (env ?? {}) as Record<string, unknown>,
+      );
+      if (risePaymentProofResponse) return risePaymentProofResponse;
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);
@@ -57,5 +85,16 @@ export default {
         headers: { "content-type": "text/html; charset=utf-8" },
       });
     }
+  },
+  async scheduled(
+    _controller: unknown,
+    env: unknown,
+    ctx: { waitUntil: (promise: Promise<unknown>) => void },
+  ) {
+    ctx.waitUntil(
+      runRiseReminderJob((env ?? {}) as Record<string, unknown>).catch((error) =>
+        console.error("Rise reminder job failed", error),
+      ),
+    );
   },
 };

@@ -8,7 +8,19 @@ export const EVENT = {
   price: "R499",
 };
 
-export const REGISTRATION_EMAIL = "registrations@gwfsn.org";
+export const REGISTRATION_EMAIL = "rise@gwfsn.org";
+
+export const SOCIAL_LINKS = {
+  facebook: {
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61591857965167",
+  },
+  tiktok: {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@gwfsn2026?lang=en",
+  },
+  linkedin: null,
+} as const;
 
 export const BANKING = {
   bankName: "Standard Bank",
@@ -20,6 +32,145 @@ export const BANKING = {
   reference: "RISE2026-YourFullName",
   email: REGISTRATION_EMAIL,
 };
+
+export const EVENT_2027 = {
+  title: "RISE AFRICA WOMAN 2027",
+  tagline: "A wider African conversation about Future Skills, Leadership and Opportunity.",
+  subtitle: "Save the date for the next chapter",
+  date: "8 August 2027",
+  venue: "Royal Majestic Hotel, Rosebank, South Africa",
+  registrationOpens: "30 January 2027",
+  status: "First announcement • Registration is not yet open",
+};
+
+export const GWFSN_INFO = {
+  name: "Global Women's Future Skills Network",
+  acronym: "GWFSN",
+  tagline: "Advancing women's future skills, leadership and economic participation.",
+  email: "rise@gwfsn.org",
+  phone: "+27 83 209 1905",
+  address:
+    "Global Women's Future Skills Network, Eye of African Golf Estate, 33 Cayman Rd, 1872 Johannesburg, South Africa",
+  principles: ["Learn", "Lead", "Earn", "Flourish"],
+  board: [
+    { name: "Bess Kankolongo", role: "Founder / Chair" },
+    { name: "Kagiso Malepe", role: "Executive Member" },
+    { name: "Gladys Manqele", role: "Member" },
+  ],
+  editorial: [
+    { name: "Dr Charles Wirsuiy Snr.", role: "Editor-in-Chief" },
+    { name: "Pastor Matete Teboho", role: "Production Executive" },
+  ],
+};
+
+export const BAROMETER_INFO = {
+  title: "GWFSN African Women's Future Skills Barometer",
+  subtitle:
+    "Understanding the conditions that help African women prepare, participate and progress.",
+  currentInstalment: "ISSUE ZERO",
+  headline: "What will it take for African women to thrive in a changing world?",
+  description:
+    "The GWFSN African Women's Future Skills Barometer asks how we understand and measure women's preparedness for the future. Its founding instalment, ISSUE ZERO, brings existing research into focus and sets out a proposed framework for future measurement.",
+  statusNote:
+    "ISSUE ZERO draws on existing research. It is not an original GWFSN survey, a validated index or a country ranking. Future measurement will require a tested methodology and comparable evidence.",
+};
+
+export const MAGAZINE_FLIPBOOK_URL = "https://recastia.net/eaah/rerw/index.html#p=1";
+
+export const MAGAZINE_INFO = {
+  title: "RISE AFRICAN WOMAN",
+  subtitle: "Future Skills • Leadership • Opportunity",
+  voice: "GWFSN's editorial voice",
+  edition: "October–December 2026",
+  editionLabel: "Inaugural edition",
+  flipbookUrl: MAGAZINE_FLIPBOOK_URL,
+  description:
+    "RISE AFRICAN WOMAN brings together the stories, ideas and practical knowledge that help women navigate change and shape opportunity. Published by GWFSN, the magazine explores learning, work, enterprise and leadership through an African lens.",
+  livingNote:
+    "Each edition combines informed perspectives with compelling storytelling and a broader view of women's lives. RISE Living adds thoughtful conversations about food, style, beauty and wellbeing.",
+  sections: [
+    {
+      title: "Future skills and technology",
+      description: "Understanding change and building useful capability.",
+    },
+    {
+      title: "Leadership and influence",
+      description: "Perspectives on responsibility, representation and progression.",
+    },
+    {
+      title: "Work and enterprise",
+      description: "Careers, business and economic participation.",
+    },
+    {
+      title: "Evidence and insight",
+      description: "Research, questions and the Barometer.",
+    },
+    {
+      title: "RISE Living",
+      description: "Ideas for wellbeing and everyday life.",
+    },
+  ],
+};
+
+export const PROGRAMME_CONCEPTS = [
+  {
+    title: "Future Skills Conversations",
+    description:
+      "A proposed series of accessible discussions and learning sessions on the changing world of work. Topics could include digital confidence, responsible use of AI, communication, financial capability and career adaptability. Each session would focus on practical questions and useful next steps.",
+    tag: "Capability & AI Readiness",
+  },
+  {
+    title: "RISE Leadership Circles",
+    description:
+      "A proposed space for peer learning and intergenerational exchange. Small-group conversations could explore leadership challenges, professional confidence, career transitions and the responsibilities that come with influence. A future pilot would establish participation and facilitation arrangements before opening.",
+    tag: "Peer Learning & Mentorship",
+  },
+  {
+    title: "Enterprise and Career Clinics",
+    description:
+      "A proposed series of focused sessions for women navigating employment or building businesses. Potential topics include presenting experience, understanding customers, pricing services and strengthening professional networks. Specialist contributors and session scope would be confirmed for each activity.",
+    tag: "Work & Enterprise",
+  },
+  {
+    title: "Opportunity Briefing",
+    description:
+      "A proposed editorial service highlighting selected learning, career and enterprise opportunities. Each listing would identify the provider, eligibility, location, deadline and original source, enabling readers to assess its relevance and apply directly through the provider.",
+    tag: "Curated Pathways",
+  },
+];
+
+export const INSIGHTS_ARTICLES = [
+  {
+    id: "introducing-rise-african-woman",
+    category: "Magazine",
+    title: "Introducing RISE AFRICAN WOMAN",
+    excerpt:
+      "GWFSN's inaugural magazine brings African women's futures into focus through stories, practical knowledge and informed perspectives. Discover the October–December 2026 edition and the vision behind the publication.",
+    date: "October 2026",
+    link: "/magazine",
+    linkLabel: "Explore the magazine",
+  },
+  {
+    id: "why-the-barometer-begins-with-issue-zero",
+    category: "Barometer",
+    title: "Why the Barometer begins with ISSUE ZERO",
+    excerpt:
+      "Before measuring progress, we need to understand what the evidence can support. The founding Barometer instalment reviews existing research and proposes a framework for future measurement.",
+    date: "October 2026",
+    link: "/barometer/issue-zero",
+    linkLabel: "Read about ISSUE ZERO",
+  },
+  {
+    id: "save-the-date-rise-africa-woman-2027",
+    category: "Events",
+    title: "Save the date for RISE AFRICA WOMAN 2027",
+    excerpt:
+      "The next RISE gathering is announced for 8 August 2027 at the Royal Majestic Hotel, Rosebank. Official registration opens on 30 January 2027.",
+    date: "October 2026",
+    link: "/events",
+    linkLabel: "View the announcement",
+  },
+];
 
 export const PROGRAMME = [
   {
@@ -176,10 +327,10 @@ const RAW_SPEAKERS: Speaker[] = [
     image: "spk-joy",
   },
   {
-    name: "Bess Rhirando",
+    name: "Prophetess Bess",
     role: "Event Host and Opening Speaker",
     session: "Hosting the Rise experience",
-    bio: "Bess Rhirando will host Rise, South African Woman 2026 and guide participants through the conference journey of legacy, confidence, transformation and future readiness — establishing the atmosphere, connecting programme segments and leading moments of reflection, celebration and the closing charge.",
+    bio: "Prophetess Bess will host Rise, South African Woman 2026 and guide participants through the conference journey of legacy, confidence, transformation and future readiness — establishing the atmosphere, connecting programme segments and leading moments of reflection, celebration and the closing charge.",
     themes: [
       "Welcoming participants",
       "Framing the theme",
@@ -192,10 +343,10 @@ const RAW_SPEAKERS: Speaker[] = [
     image: "spk-bess",
   },
   {
-    name: "Dr. Ntombi Mhangwani (Guest)",
+    name: "Dr. Ntombi Mangwani",
     role: "Fireside Conversation Guest",
     session: "Women of Africa — Honouring Legacy, Leading Now and Shaping the Future",
-    bio: "Dr. Ntombi Mhangwani will contribute to an intergenerational discussion examining how African women can honour their legacy while confidently responding to present and future leadership demands.",
+    bio: "Dr. Ntombi Mangwani will contribute to an intergenerational discussion examining how African women can honour their legacy while confidently responding to present and future leadership demands.",
     themes: [
       "Women's leadership",
       "Career transitions",
@@ -225,8 +376,8 @@ const SPEAKER_GUIDE: Record<string, Pick<Speaker, "name" | "role" | "session" | 
   "Joy Ugeh-Hutfield": { name: "Joy Ugeh-Hutfield", role: "Confidence Coach and Interactive Session Leader", session: "Confidence Workout", bio: "A practical group-coaching experience using guided affirmations, grounding practices and confidence-building exercises to help participants strengthen their presence and personal power." },
   "Rev Sam Oye": { name: "Rev Sam Oye", role: "Guest Speaker", session: "Transform for the Future: The Power of Renewal", bio: "An inspiring address on personal renewal, resilience, faith, purpose and intentional living, encouraging participants to step courageously into their next season." },
   "Lauren Hutfield": { name: "Lauren Hutfield", role: "Youth Speaker", session: "Shape the future young, African and Unstoppable", bio: "A youth-centred reflection on purpose, identity, confidence, social-media pressure and the responsibility of the next generation to shape Africa's future." },
-  "Dr. Ntombi Mhangwani (Guest)": { name: "Dr. Ntombi Mhangwani (Guest)", role: "Fireside Conversation Guest", session: "Women of Africa: Honouring Legacy, leading now and shaping the future", bio: "An honest and practical conversation about leadership, career transitions, emotional intelligence, confidence, financial power, mentorship and authenticity." },
-  "Bess Rhirando": { name: "Bess Rhirando", role: "Event Host and Opening Speaker", session: "Honour the past. Rise with purpose", bio: "A powerful opening reflection honouring the courage of the women who came before us and inviting today's women to lead with purpose, emotional intelligence and self-awareness." },
+  "Dr. Ntombi Mangwani": { name: "Dr. Ntombi Mangwani", role: "Fireside Conversation Guest", session: "Women of Africa: Honouring Legacy, leading now and shaping the future", bio: "An honest and practical conversation about leadership, career transitions, emotional intelligence, confidence, financial power, mentorship and authenticity." },
+  "Prophetess Bess": { name: "Prophetess Bess", role: "Event Host and Opening Speaker", session: "Honour the past. Rise with purpose", bio: "A powerful opening reflection honouring the courage of the women who came before us and inviting today's women to lead with purpose, emotional intelligence and self-awareness." },
 };
 
 export const SPEAKERS: Speaker[] = Object.values(SPEAKER_GUIDE).map((guide) => ({

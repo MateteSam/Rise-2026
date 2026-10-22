@@ -12,10 +12,19 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SpeakersRouteImport } from './routes/speakers'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProgrammeRouteImport } from './routes/programme'
+import { Route as PaymentProofRouteImport } from './routes/payment-proof'
+import { Route as OurWorkRouteImport } from './routes/our-work'
+import { Route as MagazineRouteImport } from './routes/magazine'
+import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as GetInvolvedRouteImport } from './routes/get-involved'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BarometerRouteImport } from './routes/barometer'
 import { Route as AttendRouteImport } from './routes/attend'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BarometerIssueZeroRouteImport } from './routes/barometer.issue-zero'
 
 const SpeakersRoute = SpeakersRouteImport.update({
   id: '/speakers',
@@ -32,9 +41,49 @@ const ProgrammeRoute = ProgrammeRouteImport.update({
   path: '/programme',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaymentProofRoute = PaymentProofRouteImport.update({
+  id: '/payment-proof',
+  path: '/payment-proof',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurWorkRoute = OurWorkRouteImport.update({
+  id: '/our-work',
+  path: '/our-work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MagazineRoute = MagazineRouteImport.update({
+  id: '/magazine',
+  path: '/magazine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GetInvolvedRoute = GetInvolvedRouteImport.update({
+  id: '/get-involved',
+  path: '/get-involved',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BarometerRoute = BarometerRouteImport.update({
+  id: '/barometer',
+  path: '/barometer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AttendRoute = AttendRouteImport.update({
@@ -52,34 +101,66 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BarometerIssueZeroRoute = BarometerIssueZeroRouteImport.update({
+  id: '/issue-zero',
+  path: '/issue-zero',
+  getParentRoute: () => BarometerRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/attend': typeof AttendRoute
+  '/barometer': typeof BarometerRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
+  '/get-involved': typeof GetInvolvedRoute
+  '/insights': typeof InsightsRoute
+  '/magazine': typeof MagazineRoute
+  '/our-work': typeof OurWorkRoute
+  '/payment-proof': typeof PaymentProofRoute
   '/programme': typeof ProgrammeRoute
   '/register': typeof RegisterRoute
   '/speakers': typeof SpeakersRoute
+  '/barometer/issue-zero': typeof BarometerIssueZeroRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/attend': typeof AttendRoute
+  '/barometer': typeof BarometerRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
+  '/get-involved': typeof GetInvolvedRoute
+  '/insights': typeof InsightsRoute
+  '/magazine': typeof MagazineRoute
+  '/our-work': typeof OurWorkRoute
+  '/payment-proof': typeof PaymentProofRoute
   '/programme': typeof ProgrammeRoute
   '/register': typeof RegisterRoute
   '/speakers': typeof SpeakersRoute
+  '/barometer/issue-zero': typeof BarometerIssueZeroRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/attend': typeof AttendRoute
+  '/barometer': typeof BarometerRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
+  '/get-involved': typeof GetInvolvedRoute
+  '/insights': typeof InsightsRoute
+  '/magazine': typeof MagazineRoute
+  '/our-work': typeof OurWorkRoute
+  '/payment-proof': typeof PaymentProofRoute
   '/programme': typeof ProgrammeRoute
   '/register': typeof RegisterRoute
   '/speakers': typeof SpeakersRoute
+  '/barometer/issue-zero': typeof BarometerIssueZeroRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,35 +168,70 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/attend'
+    | '/barometer'
+    | '/contact'
+    | '/events'
     | '/faq'
+    | '/get-involved'
+    | '/insights'
+    | '/magazine'
+    | '/our-work'
+    | '/payment-proof'
     | '/programme'
     | '/register'
     | '/speakers'
+    | '/barometer/issue-zero'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/attend'
+    | '/barometer'
+    | '/contact'
+    | '/events'
     | '/faq'
+    | '/get-involved'
+    | '/insights'
+    | '/magazine'
+    | '/our-work'
+    | '/payment-proof'
     | '/programme'
     | '/register'
     | '/speakers'
+    | '/barometer/issue-zero'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/attend'
+    | '/barometer'
+    | '/contact'
+    | '/events'
     | '/faq'
+    | '/get-involved'
+    | '/insights'
+    | '/magazine'
+    | '/our-work'
+    | '/payment-proof'
     | '/programme'
     | '/register'
     | '/speakers'
+    | '/barometer/issue-zero'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AttendRoute: typeof AttendRoute
+  BarometerRoute: typeof BarometerRouteWithChildren
+  ContactRoute: typeof ContactRoute
+  EventsRoute: typeof EventsRoute
   FaqRoute: typeof FaqRoute
+  GetInvolvedRoute: typeof GetInvolvedRoute
+  InsightsRoute: typeof InsightsRoute
+  MagazineRoute: typeof MagazineRoute
+  OurWorkRoute: typeof OurWorkRoute
+  PaymentProofRoute: typeof PaymentProofRoute
   ProgrammeRoute: typeof ProgrammeRoute
   RegisterRoute: typeof RegisterRoute
   SpeakersRoute: typeof SpeakersRoute
@@ -144,11 +260,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/payment-proof': {
+      id: '/payment-proof'
+      path: '/payment-proof'
+      fullPath: '/payment-proof'
+      preLoaderRoute: typeof PaymentProofRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-work': {
+      id: '/our-work'
+      path: '/our-work'
+      fullPath: '/our-work'
+      preLoaderRoute: typeof OurWorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/magazine': {
+      id: '/magazine'
+      path: '/magazine'
+      fullPath: '/magazine'
+      preLoaderRoute: typeof MagazineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/get-involved': {
+      id: '/get-involved'
+      path: '/get-involved'
+      fullPath: '/get-involved'
+      preLoaderRoute: typeof GetInvolvedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/barometer': {
+      id: '/barometer'
+      path: '/barometer'
+      fullPath: '/barometer'
+      preLoaderRoute: typeof BarometerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/attend': {
@@ -172,14 +344,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/barometer/issue-zero': {
+      id: '/barometer/issue-zero'
+      path: '/issue-zero'
+      fullPath: '/barometer/issue-zero'
+      preLoaderRoute: typeof BarometerIssueZeroRouteImport
+      parentRoute: typeof BarometerRoute
+    }
   }
 }
+
+interface BarometerRouteChildren {
+  BarometerIssueZeroRoute: typeof BarometerIssueZeroRoute
+}
+
+const BarometerRouteChildren: BarometerRouteChildren = {
+  BarometerIssueZeroRoute: BarometerIssueZeroRoute,
+}
+
+const BarometerRouteWithChildren = BarometerRoute._addFileChildren(
+  BarometerRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AttendRoute: AttendRoute,
+  BarometerRoute: BarometerRouteWithChildren,
+  ContactRoute: ContactRoute,
+  EventsRoute: EventsRoute,
   FaqRoute: FaqRoute,
+  GetInvolvedRoute: GetInvolvedRoute,
+  InsightsRoute: InsightsRoute,
+  MagazineRoute: MagazineRoute,
+  OurWorkRoute: OurWorkRoute,
+  PaymentProofRoute: PaymentProofRoute,
   ProgrammeRoute: ProgrammeRoute,
   RegisterRoute: RegisterRoute,
   SpeakersRoute: SpeakersRoute,

@@ -47,17 +47,25 @@ function FaqPage() {
         ))}
       </div>
 
-      <section className="mt-12 rounded-3xl border border-border bg-secondary/40 p-8">
+      <section className="mt-12 rounded-3xl border border-border bg-white p-8 shadow-xs">
         <h2 className="font-serif text-2xl text-ink">Need assistance?</h2>
-        <p className="mt-2 text-sm text-muted-foreground">Reach the organising team directly:</p>
+        <p className="mt-2 text-sm text-muted-foreground">Reach the GWFSN team directly:</p>
         <dl className="mt-4 grid gap-3 sm:grid-cols-2">
           <div>
             <dt className="text-xs uppercase tracking-widest text-muted-foreground">Email</dt>
-            <dd className="mt-1 font-semibold text-ink">hello@gwfsn.org</dd>
+            <dd className="mt-1 font-semibold text-ink">
+              <a href="mailto:rise@gwfsn.org" className="hover:text-primary">
+                rise@gwfsn.org
+              </a>
+            </dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-widest text-muted-foreground">WhatsApp</dt>
-            <dd className="mt-1 font-semibold text-ink">+27 00 000 0000</dd>
+            <dt className="text-xs uppercase tracking-widest text-muted-foreground">Telephone</dt>
+            <dd className="mt-1 font-semibold text-ink">
+              <a href="tel:+27832091905" className="hover:text-primary">
+                +27 83 209 1905
+              </a>
+            </dd>
           </div>
         </dl>
       </section>

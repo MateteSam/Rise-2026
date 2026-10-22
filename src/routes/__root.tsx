@@ -80,11 +80,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Rise, South African Woman 2026 — GWFSN Women's Day Conference" },
+      { title: "GWFSN — Global Women's Future Skills Network" },
       {
         name: "description",
         content:
-          "Join the Global Women's Future Skills Network in person at Royal Majestic Hotel, Rosebank on 8 August 2026 for an inspiring Women's Day conference on confidence, leadership, transformation and future-fit skills.",
+          "Explore GWFSN's work on women's future skills, leadership and opportunity, including the Barometer, RISE AFRICAN WOMAN and upcoming events.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Global Women's Future Skills Network" },
