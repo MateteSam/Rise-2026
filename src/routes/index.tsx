@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import heroVenue from "../assets/hero-venue.png";
+import africanWomenHero from "../assets/african-women-future-skills.jpg";
 import magazineCover from "../assets/magazine-cover.jpg";
 import { BAROMETER_INFO, EVENT_2027, INSIGHTS_ARTICLES, MAGAZINE_INFO } from "../lib/content";
 
@@ -105,14 +105,15 @@ function IndexPage() {
       </div>
 
       {/* 2. Opening Section / Organisational Introduction (Original Hero Architecture) */}
-      <section className="relative isolate min-h-[620px] overflow-hidden bg-[#101010] text-[#f8f8f8] md:min-h-[680px]">
+      <section className="relative isolate min-h-[640px] overflow-hidden bg-[#101010] text-[#f8f8f8] md:min-h-[720px]">
         <img
-          src={heroVenue}
+          src={africanWomenHero}
           alt="GWFSN African Women Shaping The Future"
-          className="absolute inset-0 h-full w-full object-cover object-[58%_center] md:object-center"
+          className="absolute inset-0 h-full w-full object-cover object-[55%_center] md:object-center brightness-95"
         />
-        <div className="absolute inset-0 bg-[#211864]/80 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#171044]/90 via-[#171044]/40 to-transparent" />
+        <div className="absolute inset-0 bg-[#120a32]/65 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#101010]/95 via-[#101010]/70 to-[#101010]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#101010] via-transparent to-transparent opacity-85" />
 
         <div className="relative mx-auto flex min-h-[620px] max-w-7xl items-end px-5 pb-16 pt-24 md:min-h-[680px] md:py-28">
           <div className="max-w-4xl">
